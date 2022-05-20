@@ -5,12 +5,21 @@ import java.util.List;
 
 public class Film {
 
+    private String filmUUID;
     private List<Bewertung> bewertungen;
     private String titel;
     private Integer laengeInMin;
     private LocalDate veroeffentlichungsdatum;
     private String isan;
     private Genre genre;
+
+    public String getFilmUUID() {
+        return filmUUID;
+    }
+
+    public void setFilmUUID(String filmUUID) {
+        this.filmUUID = filmUUID;
+    }
 
     public List<Bewertung> getBewertungen() {
         return bewertungen;

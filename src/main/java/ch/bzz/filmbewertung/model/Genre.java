@@ -4,8 +4,17 @@ import java.util.List;
 
 public class Genre {
 
+    private String genreUUID;
     private String genre;
     private List<String> merkmale;
+
+    public String getGenreUUID() {
+        return genreUUID;
+    }
+
+    public void setGenreUUID(String genreUUID) {
+        this.genreUUID = genreUUID;
+    }
 
     public String getGenre() {
         return genre;
