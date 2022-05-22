@@ -4,11 +4,14 @@ import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 import ch.bzz.filmbewertung.model.Genre;
 import ch.bzz.filmbewertung.service.Config;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +28,12 @@ public class DataHandler {
      * private constructor defeats instantiation
      */
     private DataHandler() {
-
+        setBewertungList(new ArrayList<>());
+        readBewertungJSON();
+        setFilmList(new ArrayList<>());
+        readFilmJSON();
+        setGenreList(new ArrayList<>());
+        readALlGenres();
     }
 
     /**
@@ -116,6 +124,7 @@ public class DataHandler {
             byte[] jsonData = Files.readAllBytes(Paths.get(path));
             ObjectMapper objectMapper = new ObjectMapper();
             Film[] filme = objectMapper.readValue(jsonData, Film[].class);
+            objectMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
             for (Film film : filme) {
                 getFilmList().add(film);
             }
@@ -127,7 +136,7 @@ public class DataHandler {
     /**
      * reads the bewertungen from the JSON-file
      */
-    private void readBwertungJSON() {
+    private void readBewertungJSON() {
         try {
             String path = Config.getProperty("bewertungJSON");
             byte[] jsonData = Files.readAllBytes(Paths.get(path));

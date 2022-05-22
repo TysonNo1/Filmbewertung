@@ -3,6 +3,7 @@ package ch.bzz.filmbewertung.model;
 public class Bewertung {
 
     private String bewertungUUID;
+    private Film film;
     private Byte sterne;
     private String begruendung;
     private Integer likes;
@@ -13,6 +14,14 @@ public class Bewertung {
 
     public void setBewertungUUID(String bewertungUUID) {
         this.bewertungUUID = bewertungUUID;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
     }
 
     public Byte getSterne() {

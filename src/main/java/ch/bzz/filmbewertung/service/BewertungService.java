@@ -2,11 +2,8 @@ package ch.bzz.filmbewertung.service;
 
 import ch.bzz.filmbewertung.data.DataHandler;
 import ch.bzz.filmbewertung.model.Bewertung;
-import ch.bzz.filmbewertung.model.Film;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -22,6 +19,19 @@ public class BewertungService {
         return Response
                 .status(200)
                 .entity(bewertungList)
+                .build();
+    }
+
+    @Path("read")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response readBewertung(
+            @QueryParam("uuid") String bewertungUUID
+    ) {
+        Bewertung bewertung = DataHandler.getInstance().readBewertungByUUID(bewertungUUID);
+        return Response
+                .status(200)
+                .entity(bewertung)
                 .build();
     }
 }
