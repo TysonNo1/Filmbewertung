@@ -1,0 +1,9 @@
+ch/bzz/filmbewertung/model/Film.class
+ch/bzz/filmbewertung/data/DataHandler.class
+ch/bzz/filmbewertung/service/TestService.class
+ch/bzz/filmbewertung/service/GenreService.class
+ch/bzz/filmbewertung/service/FilmService.class
+ch/bzz/filmbewertung/service/BewertungService.class
+ch/bzz/filmbewertung/model/Bewertung.class
+ch/bzz/filmbewertung/model/Genre.class
+ch/bzz/filmbewertung/service/Config.class
