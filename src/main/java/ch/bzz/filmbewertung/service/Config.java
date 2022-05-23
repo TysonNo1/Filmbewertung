@@ -10,7 +10,6 @@ import java.util.Properties;
 import java.util.Set;
 
 @ApplicationPath("/resource")
-
 public class Config extends Application {
 
     private static final String PROPERTIES_PATH = "/home/bzz/data/filmbewertung/filmbewertung.properties";

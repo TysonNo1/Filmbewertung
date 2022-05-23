@@ -1,8 +1,12 @@
 package ch.bzz.filmbewertung.model;
 
+import ch.bzz.filmbewertung.data.DataHandler;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Bewertung {
 
     private String bewertungUUID;
+    @JsonIgnore
     private Film film;
     private Byte sterne;
     private String begruendung;
@@ -18,6 +22,13 @@ public class Bewertung {
 
     public Film getFilm() {
         return film;
+    }
+
+    public void setFilm(String filmUUID) {
+        setFilm(new Film());
+        Film film = DataHandler.getInstance().readFilmByUUID(filmUUID);
+        getFilm().setFilmUUID(filmUUID);
+        getFilm().setFilm(film);
     }
 
     public void setFilm(Film film) {

@@ -4,7 +4,6 @@ import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 import ch.bzz.filmbewertung.model.Genre;
 import ch.bzz.filmbewertung.service.Config;
-import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,7 +32,7 @@ public class DataHandler {
         setFilmList(new ArrayList<>());
         readFilmJSON();
         setGenreList(new ArrayList<>());
-        readALlGenres();
+        readGenreJSON();
     }
 
     /**
@@ -123,8 +122,8 @@ public class DataHandler {
             String path = Config.getProperty("filmJSON");
             byte[] jsonData = Files.readAllBytes(Paths.get(path));
             ObjectMapper objectMapper = new ObjectMapper();
-            Film[] filme = objectMapper.readValue(jsonData, Film[].class);
             objectMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+            Film[] filme = objectMapper.readValue(jsonData, Film[].class);
             for (Film film : filme) {
                 getFilmList().add(film);
             }
