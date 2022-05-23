@@ -1,6 +1,5 @@
 package ch.bzz.filmbewertung.model;
 
-import ch.bzz.filmbewertung.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -11,6 +10,9 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Film class which stores the film data, its genre and its bewertungen
+ */
 public class Film {
 
     private String filmUUID;
@@ -25,6 +27,11 @@ public class Film {
     @JsonIgnore
     private Genre genre;
 
+    /**
+     * gets genreUUID
+     *
+     * @return the genre by its uuid
+     */
     @JsonProperty("genre")
     public String getGenreUUID() {
         if(genre != null) {
@@ -34,70 +41,146 @@ public class Film {
         }
     }
 
-    public void setGenre(String genreUUID) {
-        setGenre(DataHandler.getInstance().readGenreByUUID(genreUUID));
-    }
-
-    public Film getFilm() {
-        return film;
-    }
-
-    public void setFilm(Film film) {
-        this.film = film;
-    }
-
+    /**
+     * gets filmUUID
+     *
+     * @return value of filmUUID
+     */
     public String getFilmUUID() {
         return filmUUID;
     }
 
+    /**
+     * sets filmUUID
+     *
+     * @param filmUUID the value to set
+     */
     public void setFilmUUID(String filmUUID) {
         this.filmUUID = filmUUID;
     }
 
+    /**
+     * gets film
+     *
+     * @return value of film
+     */
+    public Film getFilm() {
+        return film;
+    }
+
+    /**
+     * sets film
+     *
+     * @param film the value to set
+     */
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
+    /**
+     * gets bewertungen
+     *
+     * @return value of bewertungen
+     */
     public List<Bewertung> getBewertungen() {
         return bewertungen;
     }
 
+    /**
+     * sets bewertungen
+     *
+     * @param bewertungen the value to set
+     */
     public void setBewertungen(List<Bewertung> bewertungen) {
         this.bewertungen = bewertungen;
     }
 
+    /**
+     * gets titel
+     *
+     * @return value of titel
+     */
     public String getTitel() {
         return titel;
     }
 
+    /**
+     * sets titel
+     *
+     * @param titel the value to set
+     */
     public void setTitel(String titel) {
         this.titel = titel;
     }
 
-    public Integer getLaengeInMin() {
-        return laengeInMin;
-    }
-
-    public void setLaengeInMin(Integer laengeInMin) {
-        this.laengeInMin = laengeInMin;
-    }
-
+    /**
+     * gets veroeffentlichungsdatum
+     *
+     * @return value of veroeffentlichungsdatum
+     */
     public LocalDate getVeroeffentlichungsdatum() {
         return veroeffentlichungsdatum;
     }
 
+    /**
+     * sets veroeffentlichungsdatum
+     *
+     * @param veroeffentlichungsdatum the value to set
+     */
     public void setVeroeffentlichungsdatum(LocalDate veroeffentlichungsdatum) {
         this.veroeffentlichungsdatum = veroeffentlichungsdatum;
     }
 
+    /**
+     * gets laengeInMin
+     *
+     * @return value of laengeInMin
+     */
+    public Integer getLaengeInMin() {
+        return laengeInMin;
+    }
+
+    /**
+     * sets laengeInMin
+     *
+     * @param laengeInMin the value to set
+     */
+    public void setLaengeInMin(Integer laengeInMin) {
+        this.laengeInMin = laengeInMin;
+    }
+
+    /**
+     * gets isan
+     *
+     * @return value of isan
+     */
     public String getIsan() {
         return isan;
     }
 
+    /**
+     * sets isan
+     *
+     * @param isan the value to set
+     */
     public void setIsan(String isan) {
         this.isan = isan;
     }
 
+    /**
+     * gets genre
+     *
+     * @return value of genre
+     */
     public Genre getGenre() {
         return genre;
     }
 
+    /**
+     * sets genre
+     *
+     * @param genre the value to set
+     */
     public void setGenre(Genre genre) {
         this.genre = genre;
     }

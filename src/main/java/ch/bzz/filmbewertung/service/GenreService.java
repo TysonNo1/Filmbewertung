@@ -1,7 +1,6 @@
 package ch.bzz.filmbewertung.service;
 
 import ch.bzz.filmbewertung.data.DataHandler;
-import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Genre;
 
 import javax.ws.rs.GET;
@@ -12,9 +11,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * GenreService to provide CRUD of Genre
+ */
 @Path("genre")
 public class GenreService {
 
+    /**
+     * lists all Genres from JSON File
+     *
+     * @return all Genres from JSON file
+     */
     @Path("list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -26,6 +33,12 @@ public class GenreService {
                 .build();
     }
 
+    /**
+     * reads Genre from JSON File by its uuid
+     *
+     * @param genreUUID genreUUID passed in the url
+     * @return Genre from JSON file by its uuid
+     */
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)

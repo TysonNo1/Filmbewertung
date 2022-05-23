@@ -8,9 +8,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * BewertungService to provide CRUD of Bewertung
+ */
 @Path("bewertung")
 public class BewertungService {
 
+    /**
+     * lists all Bewertungen from JSON File
+     *
+     * @return all Bewertungen from JSON file
+     */
     @Path("list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -22,6 +30,12 @@ public class BewertungService {
                 .build();
     }
 
+    /**
+     * reads Bewertung from JSON File by its uuid
+     *
+     * @param bewertungUUID bewertungUUID passed in the url
+     * @return Bewertung from JSON file by its uuid
+     */
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
