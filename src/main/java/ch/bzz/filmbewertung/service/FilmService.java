@@ -46,9 +46,16 @@ public class FilmService {
             @QueryParam("uuid") String filmUUID
     ) {
         Film film = DataHandler.getInstance().readFilmByUUID(filmUUID);
-        return Response
-                .status(200)
-                .entity(film)
-                .build();
+        if(film != null) {
+            return Response
+                    .status(200)
+                    .entity(film)
+                    .build();
+        } else {
+            return Response
+                    .status(404)
+                    .entity(film)
+                    .build();
+        }
     }
 }
