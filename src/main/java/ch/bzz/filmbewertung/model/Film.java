@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,16 +34,18 @@ public class Film {
      */
     @JsonProperty("genre")
     public void setGenreByUUID(String genreUUID) {
+        setGenre(new Genre());
         setGenre(DataHandler.getInstance().readGenreByUUID(genreUUID));
     }
 
     /**
-     * sets bewertungUUIDS
+     * adds to bewertungen by bewertungUUID
      *
      * @param bewertungUUIDS array of bewertungUUIDs
      */
     @JsonProperty("bewertungen")
-    public void setBewertungByUUID(List<String> bewertungUUIDS) {
+    public void setBewertungenByUUID(List<String> bewertungUUIDS) {
+        setBewertungen(new ArrayList<>());
         for (String s : bewertungUUIDS) {
             this.bewertungen.add(DataHandler.getInstance().readBewertungByUUID(s));
         }
