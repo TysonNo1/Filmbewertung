@@ -46,9 +46,16 @@ public class GenreService {
             @QueryParam("uuid") String genreUUID
     ) {
         Genre bewertung = DataHandler.getInstance().readGenreByUUID(genreUUID);
-        return Response
-                .status(200)
-                .entity(bewertung)
-                .build();
+        if(bewertung != null) {
+            return Response
+                    .status(200)
+                    .entity(bewertung)
+                    .build();
+        } else {
+            return Response
+                    .status(404)
+                    .entity(bewertung)
+                    .build();
+        }
     }
 }

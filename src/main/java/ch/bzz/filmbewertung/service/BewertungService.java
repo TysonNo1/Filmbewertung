@@ -43,9 +43,16 @@ public class BewertungService {
             @QueryParam("uuid") String bewertungUUID
     ) {
         Bewertung bewertung = DataHandler.getInstance().readBewertungByUUID(bewertungUUID);
-        return Response
-                .status(200)
-                .entity(bewertung)
-                .build();
+        if(bewertung != null) {
+            return Response
+                    .status(200)
+                    .entity(bewertung)
+                    .build();
+        } else {
+            return Response
+                    .status(404)
+                    .entity(bewertung)
+                    .build();
+        }
     }
 }
