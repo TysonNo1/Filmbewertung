@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * BewertungService to provide CRUD of Bewertung
+ *
+ * @author Erion Malaj
  */
 @Path("bewertung")
 public class BewertungService {

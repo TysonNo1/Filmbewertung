@@ -9,10 +9,15 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * Config class for properties
+ *
+ * @author Erion Malaj
+ */
 @ApplicationPath("/resource")
 public class Config extends Application {
 
-    private static final String PROPERTIES_PATH = "/home/bzz/data/filmbewertung/filmbewertung.properties";
+    private static final String PROPERTIES_PATH = "/home/bzz/webapp/filmbewertung/filmbewertung.properties";
     private static Properties properties = null;
 
     /**

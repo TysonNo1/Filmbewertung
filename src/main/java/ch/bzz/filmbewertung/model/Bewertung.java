@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Bewertung class which stores the evaluation of a film
+ *
+ * @author Erion Malaj
  */
 public class Bewertung {
 

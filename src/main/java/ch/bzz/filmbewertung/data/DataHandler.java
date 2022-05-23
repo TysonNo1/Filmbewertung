@@ -15,6 +15,8 @@ import java.util.List;
 
 /**
  * reads and writes the data in the JSON-files
+ *
+ * @author Erion Malaj
  */
 public class DataHandler {
 

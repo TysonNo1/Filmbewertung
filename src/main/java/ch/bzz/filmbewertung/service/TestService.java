@@ -8,6 +8,8 @@ import javax.ws.rs.core.Response;
 
 /**
  * test service
+ *
+ * @author Erion Malaj
  */
 @Path("test")
 public class TestService {

@@ -4,6 +4,8 @@ import java.util.List;
 
 /**
  * Genre class which stores a type of genre
+ *
+ * @author Erion Malaj
  */
 public class Genre {
 

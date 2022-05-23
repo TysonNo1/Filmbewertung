@@ -2,6 +2,8 @@ package ch.bzz.filmbewertung.model;
 
 /**
  * User class to authenticate when accessing website
+ *
+ * @author Erion Malaj
  */
 public class User {
 

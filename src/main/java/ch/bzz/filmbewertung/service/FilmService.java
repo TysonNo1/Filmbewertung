@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * FilmService to provide CRUD of Film
+ *
+ * @author Erion Malaj
  */
 @Path("film")
 public class FilmService {

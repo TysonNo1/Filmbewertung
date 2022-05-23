@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * GenreService to provide CRUD of Genre
+ *
+ * @author Erion Malaj
  */
 @Path("genre")
 public class GenreService {

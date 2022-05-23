@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * Film class which stores the film data, its genre and its bewertungen
+ *
+ * @author Erion Malaj
  */
 public class Film {
 
