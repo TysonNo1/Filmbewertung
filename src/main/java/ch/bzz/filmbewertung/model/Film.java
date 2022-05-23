@@ -1,6 +1,6 @@
 package ch.bzz.filmbewertung.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import ch.bzz.filmbewertung.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,20 +25,29 @@ public class Film {
     private LocalDate veroeffentlichungsdatum;
     private Integer laengeInMin;
     private String isan;
-    @JsonIgnore
     private Genre genre;
 
     /**
-     * gets genreUUID
+     * sets genre
      *
-     * @return the genre by its uuid
+     * @param genreUUID value to get the Genre
      */
     @JsonProperty("genre")
-    public String getGenreUUID() {
-        if(genre != null) {
-            return genre.getGenreUUID();
-        } else {
-            return null;
+    public void setGenreByUUID(String genreUUID) {
+        setGenre(new Genre());
+        setGenre(DataHandler.getInstance().readGenreByUUID(genreUUID));
+    }
+
+    /**
+     * adds to bewertungen by bewertungUUID
+     *
+     * @param bewertungUUIDS array of bewertungUUIDs
+     */
+    @JsonProperty("bewertungen")
+    public void setBewertungenByUUID(List<String> bewertungUUIDS) {
+        setBewertungen(new ArrayList<>());
+        for (String s : bewertungUUIDS) {
+            this.bewertungen.add(DataHandler.getInstance().readBewertungByUUID(s));
         }
     }
 
