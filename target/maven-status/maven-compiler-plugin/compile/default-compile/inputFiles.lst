@@ -1,6 +1,7 @@
 /home/bzz/IdeaProjects/Filmbewertung/src/main/java/ch/bzz/filmbewertung/service/BewertungService.java
 /home/bzz/IdeaProjects/Filmbewertung/src/main/java/ch/bzz/filmbewertung/service/Config.java
 /home/bzz/IdeaProjects/Filmbewertung/src/main/java/ch/bzz/filmbewertung/model/Bewertung.java
+/home/bzz/IdeaProjects/Filmbewertung/src/main/java/ch/bzz/filmbewertung/model/User.java
 /home/bzz/IdeaProjects/Filmbewertung/src/main/java/ch/bzz/filmbewertung/model/Genre.java
 /home/bzz/IdeaProjects/Filmbewertung/src/main/java/ch/bzz/filmbewertung/model/Film.java
 /home/bzz/IdeaProjects/Filmbewertung/src/main/java/ch/bzz/filmbewertung/service/TestService.java
