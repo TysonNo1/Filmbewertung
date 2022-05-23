@@ -1,0 +1,388 @@
+{
+	"id": "968fef26-ce96-4ff3-822a-a4baccc83b0f",
+	"name": "Filmbewertung",
+	"timestamp": "2022-05-23T19:56:50.397Z",
+	"collection_id": "f597fa02-d084-4ee7-8e6b-db931361b54b",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 20,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "d1da8eb2-ad07-4993-a40b-4f9958ed9839",
+			"name": "0.1 TestService",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/test/test",
+			"time": 15,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "7385177a-35eb-42e1-9a8b-61215bd90c36",
+			"name": "1.0 List all Filme",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/list",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "0fce7e11-66ae-4ef0-891c-6248068ed4b8",
+			"name": "1.1 Read Film by uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/read?uuid=57628555-4884-4bf5-9338-f477415ef5c8",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "8721be4a-cb08-43b8-97aa-c2f4ed5f7ed5",
+			"name": "1.2 Read film by uuid not found",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/read?uuid=1164a694-9e4a-40b8-a050-518f92f9267d",
+			"time": 8,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "45bdb34d-4540-426d-ae43-fffd5f143d3c",
+			"name": "2.0 List all Bewertungen",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/bewertung/list",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "dff03617-e9c8-4914-8e0e-190edc3034ce",
+			"name": "2.1 Read Bewertung by uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/bewertung/read?uuid=ce143778-4cdd-4a83-ab2e-a4aa557ff507",
+			"time": 15,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "fab378b1-6f7a-4864-82c8-42d805fb2aa9",
+			"name": "2.2 Read Bewertung by uuid not foud",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/bewertung/read?uuid=037fed55-9429-41f5-9894-f91b07a52fbc",
+			"time": 14,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "b0c3861a-a8db-4a1a-bd8a-681c9f460689",
+			"name": "3.0 List all Genres",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/list",
+			"time": 23,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "40c135f6-a201-460f-8d13-b2f4e557cbda",
+			"name": "3.1 Read Genre by uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/read?uuid=d8bea40b-922c-4337-aa90-f9367865f34a",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "f82db606-f27e-4c15-a212-ea6b4ceefd82",
+			"name": "3.2 Read Genre by uuid not found",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/read?uuid=863766cc-3b20-4ba7-9f52-33ba4d252dcc",
+			"time": 23,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 143,
+	"collection": {
+		"requests": [
+			{
+				"id": "d1da8eb2-ad07-4993-a40b-4f9958ed9839",
+				"method": "GET"
+			},
+			{
+				"id": "7385177a-35eb-42e1-9a8b-61215bd90c36",
+				"method": "GET"
+			},
+			{
+				"id": "0fce7e11-66ae-4ef0-891c-6248068ed4b8",
+				"method": "GET"
+			},
+			{
+				"id": "8721be4a-cb08-43b8-97aa-c2f4ed5f7ed5",
+				"method": "GET"
+			},
+			{
+				"id": "45bdb34d-4540-426d-ae43-fffd5f143d3c",
+				"method": "GET"
+			},
+			{
+				"id": "dff03617-e9c8-4914-8e0e-190edc3034ce",
+				"method": "GET"
+			},
+			{
+				"id": "fab378b1-6f7a-4864-82c8-42d805fb2aa9",
+				"method": "GET"
+			},
+			{
+				"id": "b0c3861a-a8db-4a1a-bd8a-681c9f460689",
+				"method": "GET"
+			},
+			{
+				"id": "40c135f6-a201-460f-8d13-b2f4e557cbda",
+				"method": "GET"
+			},
+			{
+				"id": "f82db606-f27e-4c15-a212-ea6b4ceefd82",
+				"method": "GET"
+			}
+		]
+	}
+}
