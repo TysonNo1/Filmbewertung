@@ -3,10 +3,7 @@ package ch.bzz.filmbewertung.service;
 import ch.bzz.filmbewertung.data.DataHandler;
 import ch.bzz.filmbewertung.model.Film;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -59,5 +56,41 @@ public class FilmService {
                     .entity(film)
                     .build();
         }
+    }
+
+    /**
+     * create Film from passed values from form
+     *
+     * @param titel title from film
+     * @param veroeffentlichungsDatum veroeffentlichungs Datum from film
+     * @param laengeInMin laenge in minutes from film
+     * @param isan ISAN from film
+     * @param bewertungenUUID UUIDS of Bewertungen from film
+     * @param genreUUID UUID of Genre from film
+     *
+     * @return 200 if Film has successfully been created
+     */
+    @Path("create")
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createFilm(
+            @FormParam("title") String titel,
+            @FormParam("veroeffentlichungsdatum") String veroeffentlichungsDatum,
+            @FormParam("laengeInMin") Integer laengeInMin,
+            @FormParam("isan") String isan,
+            @FormParam("bewertungen") List<String> bewertungenUUID,
+            @FormParam("genre") String genreUUID
+    ) {
+        Film film = new Film();
+        film.setIsan(isan);
+        film.setTitel(titel);
+        film.setLaengeInMin(laengeInMin);
+        film.setBewertungenByUUID(bewertungenUUID);
+        film.setGenreByUUID(genreUUID);
+        DataHandler.getInstance().insertFilm(film);
+        return Response
+                .status(200)
+                .entity("Successfully added Film")
+                .build();
     }
 }

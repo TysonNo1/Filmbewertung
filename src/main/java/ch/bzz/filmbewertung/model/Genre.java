@@ -14,6 +14,23 @@ public class Genre {
     private List<String> merkmale;
 
     /**
+     * Standard constructor
+     */
+    public Genre() {
+
+    }
+
+    /**
+     * Genre constructor
+     * @param genre Genre of film
+     * @param merkmale features of genre
+     */
+    public Genre(String genre, List<String> merkmale) {
+        this.genre = genre;
+        this.merkmale = merkmale;
+    }
+
+    /**
      * gets genreUUID
      *
      * @return value of genreUUID

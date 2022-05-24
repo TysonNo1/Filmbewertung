@@ -19,7 +19,6 @@ import java.util.List;
 public class Film {
 
     private String filmUUID;
-    private Film film;
     private List<Bewertung> bewertungen;
     private String titel;
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -28,6 +27,30 @@ public class Film {
     private Integer laengeInMin;
     private String isan;
     private Genre genre;
+
+    /**
+     * Standard constructor
+     */
+    public Film() {
+    }
+
+    /**
+     * Constructor for film
+     * @param bewertungen evaluations of the film
+     * @param titel title of the film
+     * @param veroeffentlichungsdatum publish date of film
+     * @param laengeInMin length in minutes of film
+     * @param isan ISAN number of film
+     * @param genre Genre of film
+     */
+    public Film(List<Bewertung> bewertungen, String titel, LocalDate veroeffentlichungsdatum, Integer laengeInMin, String isan, Genre genre) {
+        this.bewertungen = bewertungen;
+        this.titel = titel;
+        this.veroeffentlichungsdatum = veroeffentlichungsdatum;
+        this.laengeInMin = laengeInMin;
+        this.isan = isan;
+        this.genre = genre;
+    }
 
     /**
      * sets genre
@@ -69,24 +92,6 @@ public class Film {
      */
     public void setFilmUUID(String filmUUID) {
         this.filmUUID = filmUUID;
-    }
-
-    /**
-     * gets film
-     *
-     * @return value of film
-     */
-    public Film getFilm() {
-        return film;
-    }
-
-    /**
-     * sets film
-     *
-     * @param film the value to set
-     */
-    public void setFilm(Film film) {
-        this.film = film;
     }
 
     /**

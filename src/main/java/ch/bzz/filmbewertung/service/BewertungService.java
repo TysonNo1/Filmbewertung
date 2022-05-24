@@ -2,6 +2,7 @@ package ch.bzz.filmbewertung.service;
 
 import ch.bzz.filmbewertung.data.DataHandler;
 import ch.bzz.filmbewertung.model.Bewertung;
+import ch.bzz.filmbewertung.model.Film;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -56,5 +57,35 @@ public class BewertungService {
                     .entity(bewertung)
                     .build();
         }
+    }
+
+    /**
+     * create Bewertung from the passed values of form
+     * @param filmUUID UUID of Film
+     * @param sterne number of stars
+     * @param begruendung reason why this number of stars
+     * @param likes number of likes
+     *
+     * @return 200 if Bewertung has successfully been created
+     */
+    @Path("create")
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createBewertung(
+            @FormParam("film") String filmUUID,
+            @FormParam("sterne") Byte sterne,
+            @FormParam("begruendung") String begruendung,
+            @FormParam("likes") Integer likes
+    ) {
+        Bewertung bewertung = new Bewertung();
+        bewertung.setBegruendung(begruendung);
+        bewertung.setLikes(likes);
+        bewertung.setSterne(sterne);
+        bewertung.setFilm(filmUUID);
+        DataHandler.getInstance().insertBewertung(bewertung);
+        return Response
+                .status(200)
+                .entity("Successfully added Bewertung")
+                .build();
     }
 }
