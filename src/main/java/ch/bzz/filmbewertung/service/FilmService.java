@@ -1,12 +1,14 @@
 package ch.bzz.filmbewertung.service;
 
 import ch.bzz.filmbewertung.data.DataHandler;
+import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,7 +64,7 @@ public class FilmService {
     /**
      * create Film from passed values from form
      *
-     * @param title title from film
+     * @param titel title from film
      * @param veroeffentlichungsDatum veroeffentlichungs Datum from film
      * @param laengeInMin laenge in minutes from film
      * @param isan ISAN from film
@@ -75,13 +77,20 @@ public class FilmService {
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public Response createFilm(
-            @FormParam("title") String title,
+            @FormParam("title") String titel,
             @FormParam("veroeffentlichungsdatum") String veroeffentlichungsDatum,
             @FormParam("laengeInMin") Integer laengeInMin,
             @FormParam("isan") String isan,
             @FormParam("bewertungen") List<String> bewertungenUUID,
             @FormParam("genre") String genreUUID
     ) {
+        Film film = new Film();
+        film.setIsan(isan);
+        film.setTitel(titel);
+        film.setLaengeInMin(laengeInMin);
+        film.setBewertungenByUUID(bewertungenUUID);
+        film.setGenreByUUID(genreUUID);
+        DataHandler.getInstance().insertFilm(film);
         return Response
                 .status(200)
                 .entity("Successfully added Film")
