@@ -42,7 +42,7 @@ public class DataHandler {
 
     /**
      * gets the only instance of this class
-     * @return
+     * @return DataHandler instance
      */
     public static DataHandler getInstance() {
         if (instance == null)
@@ -60,7 +60,7 @@ public class DataHandler {
 
     /**
      * reads a film by its uuid
-     * @param filmUUID
+     * @param filmUUID uuid of film
      * @return the Film (null=not found)
      */
     public Film readFilmByUUID(String filmUUID) {
@@ -112,7 +112,7 @@ public class DataHandler {
 
     /**
      * reads a bewertung by its uuid
-     * @param bewertungUUID
+     * @param bewertungUUID uuid of bewertung
      * @return the Bewertung (null=not found)
      */
     public Bewertung readBewertungByUUID(String bewertungUUID) {
@@ -126,6 +126,35 @@ public class DataHandler {
     }
 
     /**
+     * creates a Bewertung with passed data
+     *
+     * @param bewertung Object that wants to be inserted
+     */
+    public void insertBewertung(Bewertung bewertung) {
+        readALlBewertungen().add(bewertung);
+        writeBewertungJSON();
+    }
+
+    /**
+     * Writes a Bewertung object into JSON File
+     */
+    public void writeBewertungJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        FileOutputStream fileOutputStream = null;
+        Writer fileWriter;
+
+        String bookPath = Config.getProperty("bewertungJSON");
+        try {
+            fileOutputStream = new FileOutputStream(bookPath);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+            objectWriter.writeValue(fileWriter, getFilmList());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
      * reads all Genres
      * @return list of genres
      */
@@ -135,7 +164,7 @@ public class DataHandler {
 
     /**
      * reads a genre by its uuid
-     * @param genreUUID
+     * @param genreUUID uuid of genre
      * @return the Genre (null=not found)
      */
     public Genre readGenreByUUID(String genreUUID) {
@@ -184,6 +213,35 @@ public class DataHandler {
     }
 
     /**
+     * creates a Genre with passed data
+     *
+     * @param genre Object that wants to be inserted
+     */
+    public void insertGenre(Genre genre) {
+        readALlGenres().add(genre);
+        writeGenreJSON();
+    }
+
+    /**
+     * Writes a Genre object into JSON File
+     */
+    public void writeGenreJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        FileOutputStream fileOutputStream = null;
+        Writer fileWriter;
+
+        String bookPath = Config.getProperty("genreJSON");
+        try {
+            fileOutputStream = new FileOutputStream(bookPath);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+            objectWriter.writeValue(fileWriter, getFilmList());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
      * reads the genres from the JSON-file
      */
     private void readGenreJSON() {
@@ -199,7 +257,6 @@ public class DataHandler {
             ex.printStackTrace();
         }
     }
-
 
     /**
      * gets filmlist

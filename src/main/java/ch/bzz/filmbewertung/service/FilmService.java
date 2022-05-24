@@ -1,14 +1,11 @@
 package ch.bzz.filmbewertung.service;
 
 import ch.bzz.filmbewertung.data.DataHandler;
-import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

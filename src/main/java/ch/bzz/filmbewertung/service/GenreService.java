@@ -1,12 +1,10 @@
 package ch.bzz.filmbewertung.service;
 
 import ch.bzz.filmbewertung.data.DataHandler;
+import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Genre;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -59,5 +57,26 @@ public class GenreService {
                     .entity(bewertung)
                     .build();
         }
+    }
+
+    /**
+     *
+     * @param genre name of genre
+     * @param merkmale features of genre
+     * @return 200 if Genre has successfully been created
+     */
+    @Path("create")
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createGenre(
+            @FormParam("genre") String genreName,
+            @FormParam("merkmale") List<String> merkmale
+    ) {
+        Genre genre = new Genre(genreName, merkmale);
+        DataHandler.getInstance().insertGenre(genre);
+        return Response
+                .status(200)
+                .entity("Successfully added Bewertung")
+                .build();
     }
 }
