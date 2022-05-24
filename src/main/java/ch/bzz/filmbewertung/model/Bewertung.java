@@ -18,6 +18,26 @@ public class Bewertung {
     private Integer likes;
 
     /**
+     * Standard constructor
+     */
+    public Bewertung() {
+    }
+
+    /**
+     * Bewertung constructor with data
+     * @param film film of Bewertung
+     * @param sterne number of starts
+     * @param begruendung reason why it has so many stars
+     * @param likes number of likes
+     */
+    public Bewertung(Film film, Byte sterne, String begruendung, Integer likes) {
+        this.film = film;
+        this.sterne = sterne;
+        this.begruendung = begruendung;
+        this.likes = likes;
+    }
+
+    /**
      * sets film by its uuid
      *
      * @param filmUUID the value to set
