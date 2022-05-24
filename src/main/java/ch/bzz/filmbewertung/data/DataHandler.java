@@ -4,10 +4,13 @@ import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 import ch.bzz.filmbewertung.model.Genre;
 import ch.bzz.filmbewertung.service.Config;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -68,6 +71,35 @@ public class DataHandler {
             }
         }
         return film;
+    }
+
+    /**
+     * creates a film with passed data
+     *
+     * @param film Film Object that wants to be inserted
+     */
+    public void insertFilm(Film film) {
+        readALlFilms().add(film);
+        writeFilmJSON();
+    }
+
+    /**
+     * Writes a film object into JSON File
+     */
+    public void writeFilmJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        FileOutputStream fileOutputStream = null;
+        Writer fileWriter;
+
+        String bookPath = Config.getProperty("filmJSON");
+        try {
+            fileOutputStream = new FileOutputStream(bookPath);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+            objectWriter.writeValue(fileWriter, getFilmList());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
