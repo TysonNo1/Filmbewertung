@@ -46,7 +46,6 @@ public class Bewertung {
         setFilm(new Film());
         Film film = DataHandler.getInstance().readFilmByUUID(filmUUID);
         getFilm().setFilmUUID(filmUUID);
-        getFilm().setFilm(film);
     }
 
     /**
