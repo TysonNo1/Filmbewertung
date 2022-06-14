@@ -83,6 +83,21 @@ public class DataHandler {
         writeFilmJSON();
     }
 
+    public void updateFilm() {
+        writeFilmJSON();
+    }
+
+    public boolean deleteFilm(String filmUUID) {
+        Film film = readFilmByUUID(filmUUID);
+        if(film != null) {
+            getFilmList().remove(film);
+            writeFilmJSON();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Writes a film object into JSON File
      */
@@ -133,6 +148,21 @@ public class DataHandler {
     public void insertBewertung(Bewertung bewertung) {
         readALlBewertungen().add(bewertung);
         writeBewertungJSON();
+    }
+
+    public void updateBewertung() {
+        writeBewertungJSON();
+    }
+
+    public boolean deleteBewertung(String bewertungUUID) {
+        Bewertung bewertung = readBewertungByUUID(bewertungUUID);
+        if(bewertung != null) {
+            getBewertungList().remove(bewertung);
+            writeBewertungJSON();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -220,6 +250,21 @@ public class DataHandler {
     public void insertGenre(Genre genre) {
         readALlGenres().add(genre);
         writeGenreJSON();
+    }
+
+    public void updatePublisher() {
+        writeGenreJSON();
+    }
+
+    public boolean deleteGenre(String genreUUID) {
+        Genre genre = readGenreByUUID(genreUUID);
+        if (genre != null) {
+            getGenreList().remove(genre);
+            writeGenreJSON();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +20,37 @@ import java.util.List;
  */
 public class Film {
 
+    @FormParam("filmUUID")
+    @NotEmpty
+    @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String filmUUID;
+
+    @FormParam("bewertungen")
+    @NotNull
     private List<Bewertung> bewertungen;
+
+    @FormParam("titel")
+    @NotEmpty
+    @Size(min = 5, max = 40)
     private String titel;
+
+    @FormParam("veroeffentlichungsdatum")
+    @NotNull
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate veroeffentlichungsdatum;
+
+    @FormParam("laengeInMin")
+    @Min(1)
     private Integer laengeInMin;
+
+    @FormParam("isan")
+    @NotEmpty
+    @Pattern(regexp = "ISAN\\s([0-9A-F]{4}-){4}[0-9A-Z]-([0-9A-F]{4}-){2}[0-9A-Z]")
     private String isan;
+
+    @FormParam("genre")
+    @NotEmpty
     private Genre genre;
 
     /**
