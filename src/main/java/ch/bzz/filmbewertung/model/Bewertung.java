@@ -3,6 +3,9 @@ package ch.bzz.filmbewertung.model;
 import ch.bzz.filmbewertung.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
+
 /**
  * Bewertung class which stores the evaluation of a film
  *
@@ -10,11 +13,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class Bewertung {
 
+    @FormParam("bewertungUUID")
+    @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String bewertungUUID;
+
     @JsonIgnore
     private Film film;
+
+    @FormParam("sterne")
+    @Min(1)
+    @Max(5)
     private Byte sterne;
+
+    @FormParam("begruendung")
+    @NotEmpty
+    @Size(max = 100)
     private String begruendung;
+
+    @FormParam("likes")
+    @Min(0)
     private Integer likes;
 
     /**
