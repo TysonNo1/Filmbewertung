@@ -1,12 +1,17 @@
 package ch.bzz.filmbewertung.service;
 
 import ch.bzz.filmbewertung.data.DataHandler;
+import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.crypto.Data;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * FilmService to provide CRUD of Film
@@ -81,12 +86,17 @@ public class FilmService {
             @FormParam("bewertungen") List<String> bewertungenUUID,
             @FormParam("genre") String genreUUID
     ) {
-        Film film = new Film();
-        film.setIsan(isan);
-        film.setTitel(titel);
-        film.setLaengeInMin(laengeInMin);
-        film.setBewertungenByUUID(bewertungenUUID);
-        film.setGenreByUUID(genreUUID);
+        List<Bewertung> bewertungList = new ArrayList<>();
+        bewertungenUUID.forEach(b -> bewertungList.add(DataHandler.getInstance().readBewertungByUUID(b)));
+        Film film = new Film(
+                UUID.randomUUID().toString(),
+                bewertungList,
+                titel,
+                LocalDate.parse(veroeffentlichungsDatum),
+                laengeInMin,
+                isan,
+                DataHandler.getInstance().readGenreByUUID(genreUUID)
+        );
         DataHandler.getInstance().insertFilm(film);
         return Response
                 .status(200)
