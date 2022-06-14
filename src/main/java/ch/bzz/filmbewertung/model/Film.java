@@ -36,6 +36,7 @@ public class Film {
 
     /**
      * Constructor for film
+     * @param filmUUID UUID of the film
      * @param bewertungen evaluations of the film
      * @param titel title of the film
      * @param veroeffentlichungsdatum publish date of film
@@ -43,7 +44,8 @@ public class Film {
      * @param isan ISAN number of film
      * @param genre Genre of film
      */
-    public Film(List<Bewertung> bewertungen, String titel, LocalDate veroeffentlichungsdatum, Integer laengeInMin, String isan, Genre genre) {
+    public Film(String filmUUID, List<Bewertung> bewertungen, String titel, LocalDate veroeffentlichungsdatum, Integer laengeInMin, String isan, Genre genre) {
+        this.filmUUID = filmUUID;
         this.bewertungen = bewertungen;
         this.titel = titel;
         this.veroeffentlichungsdatum = veroeffentlichungsdatum;

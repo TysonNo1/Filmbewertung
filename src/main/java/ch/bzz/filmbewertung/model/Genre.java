@@ -1,5 +1,6 @@
 package ch.bzz.filmbewertung.model;
 
+import javax.ws.rs.FormParam;
 import java.util.List;
 
 /**
@@ -9,7 +10,10 @@ import java.util.List;
  */
 public class Genre {
 
+    @FormParam("genreUUID")
     private String genreUUID;
+
+    @FormParam("param")
     private String genre;
     private List<String> merkmale;
 
