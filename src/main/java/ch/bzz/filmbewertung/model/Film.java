@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Film class which stores the film data, its genre and its bewertungen
+ * Film class which stores the film data, its genre and its evaluations
  *
  * @author Erion Malaj
  */
@@ -25,26 +25,26 @@ public class Film {
     @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String filmUUID;
 
-    @FormParam("bewertungen")
+    @FormParam("evaluations")
     @NotNull
-    private List<Bewertung> bewertungen;
+    private List<Evaluation> evaluations;
 
-    @FormParam("titel")
+    @FormParam("title")
     @NotEmpty
     @Size(min = 5, max = 40)
-    private String titel;
+    private String title;
 
-    @FormParam("veroeffentlichungsdatum")
+    @FormParam("releaseDate")
     @NotNull
     @Past
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate veroeffentlichungsdatum;
+    private LocalDate releaseDate;
 
-    @FormParam("laengeInMin")
+    @FormParam("lengthInMin")
     @Min(30)
     @Max(250)
-    private Integer laengeInMin;
+    private Integer lengthInMin;
 
     @FormParam("isan")
     @NotEmpty
@@ -64,19 +64,19 @@ public class Film {
     /**
      * Constructor for film
      * @param filmUUID UUID of the film
-     * @param bewertungen evaluations of the film
-     * @param titel title of the film
-     * @param veroeffentlichungsdatum publish date of film
-     * @param laengeInMin length in minutes of film
+     * @param evaluations evaluations of the film
+     * @param title title of the film
+     * @param releaseDate publish date of film
+     * @param lengthInMin length in minutes of film
      * @param isan ISAN number of film
      * @param genre Genre of film
      */
-    public Film(String filmUUID, List<Bewertung> bewertungen, String titel, LocalDate veroeffentlichungsdatum, Integer laengeInMin, String isan, Genre genre) {
+    public Film(String filmUUID, List<Evaluation> evaluations, String title, LocalDate releaseDate, Integer lengthInMin, String isan, Genre genre) {
         this.filmUUID = filmUUID;
-        this.bewertungen = bewertungen;
-        this.titel = titel;
-        this.veroeffentlichungsdatum = veroeffentlichungsdatum;
-        this.laengeInMin = laengeInMin;
+        this.evaluations = evaluations;
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.lengthInMin = lengthInMin;
         this.isan = isan;
         this.genre = genre;
     }
@@ -93,15 +93,15 @@ public class Film {
     }
 
     /**
-     * adds to bewertungen by bewertungUUID
+     * adds to evaluations by evaluationUUID
      *
-     * @param bewertungUUIDS array of bewertungUUIDs
+     * @param evaluationsUUIDS array of evalutionsUUID
      */
     @JsonProperty("bewertungen")
-    public void setBewertungenByUUID(List<String> bewertungUUIDS) {
-        setBewertungen(new ArrayList<>());
-        for (String s : bewertungUUIDS) {
-            this.bewertungen.add(DataHandler.getInstance().readBewertungByUUID(s));
+    public void setBewertungenByUUID(List<String> evaluationsUUIDS) {
+        setEvaluations(new ArrayList<>());
+        for (String s : evaluationsUUIDS) {
+            this.evaluations.add(DataHandler.getInstance().readEvaluationByUUID(s));
         }
     }
 
@@ -124,75 +124,75 @@ public class Film {
     }
 
     /**
-     * gets bewertungen
+     * gets evaluations
      *
-     * @return value of bewertungen
+     * @return value of evaluations
      */
-    public List<Bewertung> getBewertungen() {
-        return bewertungen;
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
     }
 
     /**
-     * sets bewertungen
+     * sets evaluations
      *
-     * @param bewertungen the value to set
+     * @param evaluations the value to set
      */
-    public void setBewertungen(List<Bewertung> bewertungen) {
-        this.bewertungen = bewertungen;
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
     }
 
     /**
-     * gets titel
+     * gets title
      *
-     * @return value of titel
+     * @return value of title
      */
-    public String getTitel() {
-        return titel;
+    public String getTitle() {
+        return title;
     }
 
     /**
-     * sets titel
+     * sets title
      *
-     * @param titel the value to set
+     * @param title the value to set
      */
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
-     * gets veroeffentlichungsdatum
+     * gets releaseDate
      *
-     * @return value of veroeffentlichungsdatum
+     * @return value of releaseDate
      */
-    public LocalDate getVeroeffentlichungsdatum() {
-        return veroeffentlichungsdatum;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
     /**
-     * sets veroeffentlichungsdatum
+     * sets releaseDate
      *
-     * @param veroeffentlichungsdatum the value to set
+     * @param releaseDate the value to set
      */
-    public void setVeroeffentlichungsdatum(LocalDate veroeffentlichungsdatum) {
-        this.veroeffentlichungsdatum = veroeffentlichungsdatum;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     /**
-     * gets laengeInMin
+     * gets lengthInMin
      *
-     * @return value of laengeInMin
+     * @return value of lengthInMin
      */
-    public Integer getLaengeInMin() {
-        return laengeInMin;
+    public Integer getLengthInMin() {
+        return lengthInMin;
     }
 
     /**
-     * sets laengeInMin
+     * sets lengthInMin
      *
-     * @param laengeInMin the value to set
+     * @param lengthInMin the value to set
      */
-    public void setLaengeInMin(Integer laengeInMin) {
-        this.laengeInMin = laengeInMin;
+    public void setLengthInMin(Integer lengthInMin) {
+        this.lengthInMin = lengthInMin;
     }
 
     /**

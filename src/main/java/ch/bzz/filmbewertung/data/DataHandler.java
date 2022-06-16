@@ -1,6 +1,6 @@
 package ch.bzz.filmbewertung.data;
 
-import ch.bzz.filmbewertung.model.Bewertung;
+import ch.bzz.filmbewertung.model.Evaluation;
 import ch.bzz.filmbewertung.model.Film;
 import ch.bzz.filmbewertung.model.Genre;
 import ch.bzz.filmbewertung.service.Config;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * reads and writes the data in the JSON-files
+ * reads, writes, updates and deletes the data in the JSON-files
  *
  * @author Erion Malaj
  */
@@ -25,14 +25,14 @@ public class DataHandler {
 
     private static DataHandler instance;
     private List<Film> filmList;
-    private List<Bewertung> bewertungList;
+    private List<Evaluation> evaluationList;
     private List<Genre> genreList;
 
     /**
      * private constructor defeats instantiation
      */
     private DataHandler() {
-        setBewertungList(new ArrayList<>());
+        setEvaluationList(new ArrayList<>());
         readBewertungJSON();
         setFilmList(new ArrayList<>());
         readFilmJSON();
@@ -83,10 +83,18 @@ public class DataHandler {
         writeFilmJSON();
     }
 
+    /**
+     * updates film list by re-writing into the list
+     */
     public void updateFilm() {
         writeFilmJSON();
     }
 
+    /**
+     * deletes the film by its UUID
+     * @param filmUUID film to delete
+     * @return if the film could be deleted or not
+     */
     public boolean deleteFilm(String filmUUID) {
         Film film = readFilmByUUID(filmUUID);
         if(film != null) {
@@ -118,47 +126,55 @@ public class DataHandler {
     }
 
     /**
-     * reads all Bewertungen
-     * @return list of bewertungen
+     * reads all Evaluations
+     * @return list of evaluations
      */
-    public List<Bewertung> readALlBewertungen() {
-        return getBewertungList();
+    public List<Evaluation> readAllEvaluations() {
+        return getEvaluationList();
     }
 
     /**
-     * reads a bewertung by its uuid
-     * @param bewertungUUID uuid of bewertung
-     * @return the Bewertung (null=not found)
+     * reads a evaluation by its uuid
+     * @param evaluationUUID uuid of evaluation
+     * @return the Evaluation (null=not found)
      */
-    public Bewertung readBewertungByUUID(String bewertungUUID) {
-        Bewertung bewertung = null;
-        for(Bewertung entry : getBewertungList()) {
-            if(entry.getBewertungUUID().equals(bewertungUUID)) {
-                bewertung = entry;
+    public Evaluation readEvaluationByUUID(String evaluationUUID) {
+        Evaluation evaluation = null;
+        for(Evaluation entry : getEvaluationList()) {
+            if(entry.getEvaluationUUID().equals(evaluationUUID)) {
+                evaluation = entry;
             }
         }
-        return bewertung;
+        return evaluation;
     }
 
     /**
-     * creates a Bewertung with passed data
+     * creates a Evaluation with passed data
      *
-     * @param bewertung Object that wants to be inserted
+     * @param evaluation Object that wants to be inserted
      */
-    public void insertBewertung(Bewertung bewertung) {
-        readALlBewertungen().add(bewertung);
-        writeBewertungJSON();
+    public void insertEvaluation(Evaluation evaluation) {
+        readAllEvaluations().add(evaluation);
+        writeEvaluationJSON();
     }
 
-    public void updateBewertung() {
-        writeBewertungJSON();
+    /**
+     * updates the bewertung list by re-writing into the list
+     */
+    public void updateEvaluation() {
+        writeEvaluationJSON();
     }
 
-    public boolean deleteBewertung(String bewertungUUID) {
-        Bewertung bewertung = readBewertungByUUID(bewertungUUID);
-        if(bewertung != null) {
-            getBewertungList().remove(bewertung);
-            writeBewertungJSON();
+    /**
+     * delete a evaluation by its uuid
+     * @param evaluationUUID evaluation to delete
+     * @return if the evaluation could be deleted or not
+     */
+    public boolean deleteEvaluation(String evaluationUUID) {
+        Evaluation evaluation = readEvaluationByUUID(evaluationUUID);
+        if(evaluation != null) {
+            getEvaluationList().remove(evaluation);
+            writeEvaluationJSON();
             return true;
         } else {
             return false;
@@ -166,9 +182,9 @@ public class DataHandler {
     }
 
     /**
-     * Writes a Bewertung object into JSON File
+     * Writes a Evaluation object into JSON File
      */
-    public void writeBewertungJSON() {
+    public void writeEvaluationJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         FileOutputStream fileOutputStream = null;
@@ -233,9 +249,9 @@ public class DataHandler {
             String path = Config.getProperty("bewertungJSON");
             byte[] jsonData = Files.readAllBytes(Paths.get(path));
             ObjectMapper objectMapper = new ObjectMapper();
-            Bewertung[] bewertungen = objectMapper.readValue(jsonData, Bewertung[].class);
-            for (Bewertung bewertung : bewertungen) {
-                getBewertungList().add(bewertung);
+            Evaluation[] bewertungen = objectMapper.readValue(jsonData, Evaluation[].class);
+            for (Evaluation evaluation : bewertungen) {
+                getEvaluationList().add(evaluation);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -252,10 +268,18 @@ public class DataHandler {
         writeGenreJSON();
     }
 
+    /**
+     * updades the genre list by re-writing into the list
+     */
     public void updateGenre() {
         writeGenreJSON();
     }
 
+    /**
+     * deletes a genre by its uuid
+     * @param genreUUID genre to delete
+     * @return if the genre could be deleted or not
+     */
     public boolean deleteGenre(String genreUUID) {
         Genre genre = readGenreByUUID(genreUUID);
         if (genre != null) {
@@ -322,21 +346,21 @@ public class DataHandler {
     }
 
     /**
-     * gets bewertungList
+     * gets evaluationsList
      *
-     * @return value of bewertungList
+     * @return value of evaluationsList
      */
-    private List<Bewertung> getBewertungList() {
-        return bewertungList;
+    private List<Evaluation> getEvaluationList() {
+        return evaluationList;
     }
 
     /**
-     * sets filmlist
+     * sets evaluationsList
      *
-     * @param bewertungList the value to set
+     * @param evaluationList the value to set
      */
-    private void setBewertungList(List<Bewertung> bewertungList) {
-        this.bewertungList = bewertungList;
+    private void setEvaluationList(List<Evaluation> evaluationList) {
+        this.evaluationList = evaluationList;
     }
 
     /**

@@ -3,7 +3,6 @@ package ch.bzz.filmbewertung.model;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
 import java.util.List;
 
@@ -22,9 +21,9 @@ public class Genre {
     @NotEmpty
     private String genre;
 
-    @FormParam("merkmale")
+    @FormParam("features")
     @NotNull
-    private List<String> merkmale;
+    private List<String> features;
 
     /**
      * Standard constructor
@@ -36,11 +35,11 @@ public class Genre {
     /**
      * Genre constructor
      * @param genre Genre of film
-     * @param merkmale features of genre
+     * @param features features of genre
      */
-    public Genre(String genre, List<String> merkmale) {
+    public Genre(String genre, List<String> features) {
         this.genre = genre;
-        this.merkmale = merkmale;
+        this.features = features;
     }
 
     /**
@@ -80,20 +79,20 @@ public class Genre {
     }
 
     /**
-     * gets merkmale
+     * gets features
      *
-     * @return value of merkmale
+     * @return value of features
      */
-    public List<String> getMerkmale() {
-        return merkmale;
+    public List<String> getFeatures() {
+        return features;
     }
 
     /**
-     * sets merkmale
+     * sets features
      *
-     * @param merkmale the value to set
+     * @param features the value to set
      */
-    public void setMerkmale(List<String> merkmale) {
-        this.merkmale = merkmale;
+    public void setFeatures(List<String> features) {
+        this.features = features;
     }
 }
