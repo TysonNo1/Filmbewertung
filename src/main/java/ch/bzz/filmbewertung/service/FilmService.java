@@ -1,21 +1,15 @@
 package ch.bzz.filmbewertung.service;
 
 import ch.bzz.filmbewertung.data.DataHandler;
-import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.crypto.Data;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * FilmService to provide CRUD of Film
@@ -33,7 +27,7 @@ public class FilmService {
     @Path("list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listFilme () {
+    public Response listFilms() {
         List<Film> filmList = DataHandler.getInstance().readALlFilms();
         return Response
                 .status(200)
@@ -67,29 +61,28 @@ public class FilmService {
     }
 
     /**
-     * create Film from passed values from form
+     * create Film from passed values
      *
-     * @param film Film welcher erstellt werden soll
-     *
-     * @return 200 if Film has successfully been created
+     * @param film Film that wants to be inserted
+     * @return if Film has successfully been inserted
      */
     @Path("create")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createFilm(
+    public Response insertFilm(
             @Valid @BeanParam Film film
     ) {
         DataHandler.getInstance().insertFilm(film);
         return Response
                 .status(200)
-                .entity("Successfully added Film")
+                .entity("")
                 .build();
     }
 
     /**
-     * Aktualisiert ein Film
-     * @param film Film, welcher aktualisiert werden soll, falls er existiert
-     * @return gibt zurück, ob der Film aktualisiert werden konnte oder nicht
+     * updates a film
+     * @param film Film that wants to be updated if it exists
+     * @return returns if the film could be updated or not
      */
     @PUT
     @Path("update")
@@ -100,11 +93,11 @@ public class FilmService {
         int httpStatus = 200;
         Film alterFilm = DataHandler.getInstance().readFilmByUUID(film.getFilmUUID());
         if(alterFilm != null) {
-            alterFilm.setTitel(film.getTitel());
+            alterFilm.setTitle(film.getTitle());
             alterFilm.setGenreByUUID(film.getGenre().getGenreUUID());
-            alterFilm.setLaengeInMin(film.getLaengeInMin());
+            alterFilm.setLengthInMin(film.getLengthInMin());
             alterFilm.setIsan(film.getIsan());
-            alterFilm.setBewertungen(film.getBewertungen());
+            alterFilm.setEvaluations(film.getEvaluations());
 
             DataHandler.getInstance().updateFilm();
         } else {
@@ -117,9 +110,9 @@ public class FilmService {
     }
 
     /**
-     * Löscht einen Film
-     * @param filmUUID die FilmUUID von dem gewünschten Film
-     * @return gibt zurück, ob der Film gelöscht wurde
+     * Deletes a film
+     * @param filmUUID Film that wants to be deleted
+     * @return returns if the film could be deleted or not
      */
     @DELETE
     @Path("delete")

@@ -7,29 +7,29 @@ import javax.validation.constraints.*;
 import javax.ws.rs.FormParam;
 
 /**
- * Bewertung class which stores the evaluation of a film
+ * Evaluation class which stores the evaluation of a film
  *
  * @author Erion Malaj
  */
-public class Bewertung {
+public class Evaluation {
 
-    @FormParam("bewertungUUID")
+    @FormParam("evaluationUUID")
     @NotEmpty
     @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
-    private String bewertungUUID;
+    private String evaluationUUID;
 
     @JsonIgnore
     private Film film;
 
-    @FormParam("sterne")
+    @FormParam("stars")
     @Min(1)
     @Max(5)
-    private Byte sterne;
+    private Byte stars;
 
-    @FormParam("begruendung")
+    @FormParam("reason")
     @NotEmpty
     @Size(max = 100)
-    private String begruendung;
+    private String reason;
 
     @FormParam("likes")
     @Min(0)
@@ -38,20 +38,20 @@ public class Bewertung {
     /**
      * Standard constructor
      */
-    public Bewertung() {
+    public Evaluation() {
     }
 
     /**
      * Bewertung constructor with data
-     * @param film film of Bewertung
-     * @param sterne number of starts
-     * @param begruendung reason why it has so many stars
+     * @param film film of evalution
+     * @param stars number of starts
+     * @param reason reason why it has so many stars
      * @param likes number of likes
      */
-    public Bewertung(Film film, Byte sterne, String begruendung, Integer likes) {
+    public Evaluation(Film film, Byte stars, String reason, Integer likes) {
         this.film = film;
-        this.sterne = sterne;
-        this.begruendung = begruendung;
+        this.stars = stars;
+        this.reason = reason;
         this.likes = likes;
     }
 
@@ -61,27 +61,26 @@ public class Bewertung {
      * @param filmUUID the value to set
      */
     public void setFilm(String filmUUID) {
-        setFilm(new Film());
         Film film = DataHandler.getInstance().readFilmByUUID(filmUUID);
-        getFilm().setFilmUUID(filmUUID);
+        setFilm(film);
     }
 
     /**
-     * gets bewertungUUID
+     * gets evaluationUUID
      *
-     * @return value of bewertungUUID
+     * @return value of evaluationUUID
      */
-    public String getBewertungUUID() {
-        return bewertungUUID;
+    public String getEvaluationUUID() {
+        return evaluationUUID;
     }
 
     /**
-     * sets bewertungUUID
+     * sets evaluationUUID
      *
-     * @param bewertungUUID the value to set
+     * @param evaluationUUID the value to set
      */
-    public void setBewertungUUID(String bewertungUUID) {
-        this.bewertungUUID = bewertungUUID;
+    public void setEvaluationUUID(String evaluationUUID) {
+        this.evaluationUUID = evaluationUUID;
     }
 
     /**
@@ -103,39 +102,39 @@ public class Bewertung {
     }
 
     /**
-     * gets sterne
+     * gets stars
      *
-     * @return value of sterne
+     * @return value of stars
      */
-    public Byte getSterne() {
-        return sterne;
+    public Byte getStars() {
+        return stars;
     }
 
     /**
-     * sets sterne
+     * sets stars
      *
-     * @param sterne the value to set
+     * @param stars the value to set
      */
-    public void setSterne(Byte sterne) {
-        this.sterne = sterne;
+    public void setStars(Byte stars) {
+        this.stars = stars;
     }
 
     /**
-     * gets begruendung
+     * gets reason
      *
-     * @return value of begruendung
+     * @return value of reason
      */
-    public String getBegruendung() {
-        return begruendung;
+    public String getReason() {
+        return reason;
     }
 
     /**
-     * sets begruendung
+     * sets reason
      *
-     * @param begruendung the value to set
+     * @param reason the value to set
      */
-    public void setBegruendung(String begruendung) {
-        this.begruendung = begruendung;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     /**

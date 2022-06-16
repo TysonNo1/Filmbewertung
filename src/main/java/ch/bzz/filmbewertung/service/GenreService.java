@@ -61,9 +61,10 @@ public class GenreService {
     }
 
     /**
+     * create Genre from the passed values
      *
-     * @param genre Genre welches erstellt werden soll
-     * @return 200 if Genre has successfully been created
+     * @param genre Genre which wants to be inserted
+     * @return if Genre has successfully been inserted
      */
     @Path("create")
     @POST
@@ -79,9 +80,10 @@ public class GenreService {
     }
 
     /**
-     * Aktualisert ein Genre falls es existiert
-     * @param genre Genre mit den Aktualisierungen
-     * @return gibt zurück, ob das Genre aktualisert werden konnte oder nicht
+     * updates a genre if it exists
+     *
+     * @param genre Genre with changes
+     * @return returns if genre could be deleted or not
      */
     @PUT
     @Path("update")
@@ -93,7 +95,7 @@ public class GenreService {
         Genre altesGenre = DataHandler.getInstance().readGenreByUUID(genre.getGenreUUID());
         if(altesGenre != null) {
             altesGenre.setGenre(genre.getGenre());
-            altesGenre.setMerkmale(genre.getMerkmale());
+            altesGenre.setFeatures(genre.getFeatures());
 
             DataHandler.getInstance().updateGenre();
         } else {
@@ -105,10 +107,16 @@ public class GenreService {
                 .build();
     }
 
+    /**
+     * deletes a genre if it exists
+     *
+     * @param genreUUID genre that wants to be deleted
+     * @return returns if the genre could be deleted or not
+     */
     @DELETE
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response response(
+    public Response deleteGenre(
             @NotEmpty
             @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @QueryParam("uuid") String genreUUID
