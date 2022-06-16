@@ -4,6 +4,7 @@ import ch.bzz.filmbewertung.data.DataHandler;
 import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -66,12 +67,7 @@ public class FilmService {
     /**
      * create Film from passed values from form
      *
-     * @param titel title from film
-     * @param veroeffentlichungsDatum veroeffentlichungs Datum from film
-     * @param laengeInMin laenge in minutes from film
-     * @param isan ISAN from film
-     * @param bewertungenUUID UUIDS of Bewertungen from film
-     * @param genreUUID UUID of Genre from film
+     * @param film Film welcher erstellt werden soll
      *
      * @return 200 if Film has successfully been created
      */
@@ -79,24 +75,8 @@ public class FilmService {
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public Response createFilm(
-            @FormParam("title") String titel,
-            @FormParam("veroeffentlichungsdatum") String veroeffentlichungsDatum,
-            @FormParam("laengeInMin") Integer laengeInMin,
-            @FormParam("isan") String isan,
-            @FormParam("bewertungen") List<String> bewertungenUUID,
-            @FormParam("genre") String genreUUID
+            @Valid @BeanParam Film film
     ) {
-        List<Bewertung> bewertungList = new ArrayList<>();
-        bewertungenUUID.forEach(b -> bewertungList.add(DataHandler.getInstance().readBewertungByUUID(b)));
-        Film film = new Film(
-                UUID.randomUUID().toString(),
-                bewertungList,
-                titel,
-                LocalDate.parse(veroeffentlichungsDatum),
-                laengeInMin,
-                isan,
-                DataHandler.getInstance().readGenreByUUID(genreUUID)
-        );
         DataHandler.getInstance().insertFilm(film);
         return Response
                 .status(200)

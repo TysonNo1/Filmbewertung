@@ -4,6 +4,7 @@ import ch.bzz.filmbewertung.data.DataHandler;
 import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Genre;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -61,18 +62,15 @@ public class GenreService {
 
     /**
      *
-     * @param genre name of genre
-     * @param merkmale features of genre
+     * @param genre Genre welches erstellt werden soll
      * @return 200 if Genre has successfully been created
      */
     @Path("create")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public Response createGenre(
-            @FormParam("genre") String genreName,
-            @FormParam("merkmale") List<String> merkmale
+            @Valid @BeanParam Genre genre
     ) {
-        Genre genre = new Genre(genreName, merkmale);
         DataHandler.getInstance().insertGenre(genre);
         return Response
                 .status(200)
