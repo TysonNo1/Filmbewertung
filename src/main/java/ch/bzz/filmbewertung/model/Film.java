@@ -25,7 +25,6 @@ public class Film {
     @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String filmUUID;
 
-    @FormParam("evaluations")
     @NotNull
     private List<Evaluation> evaluations;
 
@@ -34,7 +33,6 @@ public class Film {
     @Size(min = 5, max = 40)
     private String title;
 
-    @FormParam("releaseDate")
     @NotNull
     @Past
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -51,7 +49,6 @@ public class Film {
     @Pattern(regexp = "ISAN\\s([0-9A-F]{4}-){4}[0-9A-Z]-([0-9A-F]{4}-){2}[0-9A-Z]")
     private String isan;
 
-    @FormParam("genre")
     @NotNull
     private Genre genre;
 
@@ -97,8 +94,8 @@ public class Film {
      *
      * @param evaluationsUUIDS array of evalutionsUUID
      */
-    @JsonProperty("bewertungen")
-    public void setBewertungenByUUID(List<String> evaluationsUUIDS) {
+    @JsonProperty("evaluations")
+    public void setEvaluationsByUUID(List<String> evaluationsUUIDS) {
         setEvaluations(new ArrayList<>());
         for (String s : evaluationsUUIDS) {
             this.evaluations.add(DataHandler.getInstance().readEvaluationByUUID(s));

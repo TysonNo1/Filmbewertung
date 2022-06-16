@@ -5,10 +5,12 @@ import ch.bzz.filmbewertung.model.Film;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -28,7 +30,7 @@ public class FilmService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response listFilms() {
-        List<Film> filmList = DataHandler.getInstance().readALlFilms();
+        List<Film> filmList = DataHandler.getInstance().readAllFilms();
         return Response
                 .status(200)
                 .entity(filmList)
@@ -70,8 +72,14 @@ public class FilmService {
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertFilm(
-            @Valid @BeanParam Film film
+            @Valid @BeanParam Film film,
+            @NotNull @FormParam("evaluations") List<String> evaluationUUIDS,
+            @NotNull @FormParam("genre") String genreUUID,
+            @NotNull @FormParam("releaseDate") String releaseDate
     ) {
+        film.setGenreByUUID(genreUUID);
+        film.setEvaluationsByUUID(evaluationUUIDS);
+        film.setReleaseDate(LocalDate.parse(releaseDate));
         DataHandler.getInstance().insertFilm(film);
         return Response
                 .status(200)
@@ -88,16 +96,18 @@ public class FilmService {
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateFilm(
-            @Valid @BeanParam Film film
+            @Valid @BeanParam Film film,
+            @NotNull @FormParam("evaluations") List<String> evaluationUUIDS,
+            @NotNull @FormParam("genre") String genreUUID
     ) {
         int httpStatus = 200;
         Film alterFilm = DataHandler.getInstance().readFilmByUUID(film.getFilmUUID());
         if(alterFilm != null) {
             alterFilm.setTitle(film.getTitle());
-            alterFilm.setGenreByUUID(film.getGenre().getGenreUUID());
+            alterFilm.setGenreByUUID(genreUUID);
             alterFilm.setLengthInMin(film.getLengthInMin());
             alterFilm.setIsan(film.getIsan());
-            alterFilm.setEvaluations(film.getEvaluations());
+            alterFilm.setEvaluationsByUUID(evaluationUUIDS);
 
             DataHandler.getInstance().updateFilm();
         } else {

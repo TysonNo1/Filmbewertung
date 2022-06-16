@@ -33,7 +33,7 @@ public class DataHandler {
      */
     private DataHandler() {
         setEvaluationList(new ArrayList<>());
-        readBewertungJSON();
+        readEvaluationJSON();
         setFilmList(new ArrayList<>());
         readFilmJSON();
         setGenreList(new ArrayList<>());
@@ -54,7 +54,7 @@ public class DataHandler {
      * reads all films
      * @return list of films
      */
-    public List<Film> readALlFilms() {
+    public List<Film> readAllFilms() {
         return getFilmList();
     }
 
@@ -79,7 +79,7 @@ public class DataHandler {
      * @param film Film Object that wants to be inserted
      */
     public void insertFilm(Film film) {
-        readALlFilms().add(film);
+        readAllFilms().add(film);
         writeFilmJSON();
     }
 
@@ -244,9 +244,9 @@ public class DataHandler {
     /**
      * reads the bewertungen from the JSON-file
      */
-    private void readBewertungJSON() {
+    private void readEvaluationJSON() {
         try {
-            String path = Config.getProperty("bewertungJSON");
+            String path = Config.getProperty("evaluationJSON");
             byte[] jsonData = Files.readAllBytes(Paths.get(path));
             ObjectMapper objectMapper = new ObjectMapper();
             Evaluation[] bewertungen = objectMapper.readValue(jsonData, Evaluation[].class);
