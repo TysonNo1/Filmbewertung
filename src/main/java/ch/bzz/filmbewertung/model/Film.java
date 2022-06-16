@@ -36,12 +36,14 @@ public class Film {
 
     @FormParam("veroeffentlichungsdatum")
     @NotNull
+    @Past
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate veroeffentlichungsdatum;
 
     @FormParam("laengeInMin")
-    @Min(1)
+    @Min(30)
+    @Max(250)
     private Integer laengeInMin;
 
     @FormParam("isan")
@@ -50,7 +52,7 @@ public class Film {
     private String isan;
 
     @FormParam("genre")
-    @NotEmpty
+    @NotNull
     private Genre genre;
 
     /**

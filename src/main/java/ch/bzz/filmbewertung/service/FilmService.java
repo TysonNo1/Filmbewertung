@@ -4,6 +4,10 @@ import ch.bzz.filmbewertung.data.DataHandler;
 import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -47,31 +51,25 @@ public class FilmService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response readFilm(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @QueryParam("uuid") String filmUUID
     ) {
+        int httpStatus = 200;
         Film film = DataHandler.getInstance().readFilmByUUID(filmUUID);
-        if(film != null) {
-            return Response
-                    .status(200)
-                    .entity(film)
-                    .build();
-        } else {
-            return Response
-                    .status(404)
-                    .entity(film)
-                    .build();
+        if(film == null) {
+            httpStatus = 410;
         }
+        return Response
+                .status(httpStatus)
+                .entity(film)
+                .build();
     }
 
     /**
      * create Film from passed values from form
      *
-     * @param titel title from film
-     * @param veroeffentlichungsDatum veroeffentlichungs Datum from film
-     * @param laengeInMin laenge in minutes from film
-     * @param isan ISAN from film
-     * @param bewertungenUUID UUIDS of Bewertungen from film
-     * @param genreUUID UUID of Genre from film
+     * @param film Film welcher erstellt werden soll
      *
      * @return 200 if Film has successfully been created
      */
@@ -79,28 +77,65 @@ public class FilmService {
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public Response createFilm(
-            @FormParam("title") String titel,
-            @FormParam("veroeffentlichungsdatum") String veroeffentlichungsDatum,
-            @FormParam("laengeInMin") Integer laengeInMin,
-            @FormParam("isan") String isan,
-            @FormParam("bewertungen") List<String> bewertungenUUID,
-            @FormParam("genre") String genreUUID
+            @Valid @BeanParam Film film
     ) {
-        List<Bewertung> bewertungList = new ArrayList<>();
-        bewertungenUUID.forEach(b -> bewertungList.add(DataHandler.getInstance().readBewertungByUUID(b)));
-        Film film = new Film(
-                UUID.randomUUID().toString(),
-                bewertungList,
-                titel,
-                LocalDate.parse(veroeffentlichungsDatum),
-                laengeInMin,
-                isan,
-                DataHandler.getInstance().readGenreByUUID(genreUUID)
-        );
         DataHandler.getInstance().insertFilm(film);
         return Response
                 .status(200)
                 .entity("Successfully added Film")
+                .build();
+    }
+
+    /**
+     * Aktualisiert ein Film
+     * @param film Film, welcher aktualisiert werden soll, falls er existiert
+     * @return gibt zurück, ob der Film aktualisiert werden konnte oder nicht
+     */
+    @PUT
+    @Path("update")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response updateFilm(
+            @Valid @BeanParam Film film
+    ) {
+        int httpStatus = 200;
+        Film alterFilm = DataHandler.getInstance().readFilmByUUID(film.getFilmUUID());
+        if(alterFilm != null) {
+            alterFilm.setTitel(film.getTitel());
+            alterFilm.setGenreByUUID(film.getGenre().getGenreUUID());
+            alterFilm.setLaengeInMin(film.getLaengeInMin());
+            alterFilm.setIsan(film.getIsan());
+            alterFilm.setBewertungen(film.getBewertungen());
+
+            DataHandler.getInstance().updateFilm();
+        } else {
+            httpStatus = 401;
+        }
+        return Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+    }
+
+    /**
+     * Löscht einen Film
+     * @param filmUUID die FilmUUID von dem gewünschten Film
+     * @return gibt zurück, ob der Film gelöscht wurde
+     */
+    @DELETE
+    @Path("delete")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteFilm(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @QueryParam("uuid") String filmUUID
+    ) {
+        int httpStatus = 200;
+        if(!DataHandler.getInstance().deleteFilm(filmUUID)) {
+            httpStatus = 410;
+        }
+        return Response
+                .status(httpStatus)
+                .entity("")
                 .build();
     }
 }

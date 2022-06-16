@@ -252,7 +252,7 @@ public class DataHandler {
         writeGenreJSON();
     }
 
-    public void updatePublisher() {
+    public void updateGenre() {
         writeGenreJSON();
     }
 

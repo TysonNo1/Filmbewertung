@@ -4,9 +4,13 @@ import ch.bzz.filmbewertung.data.DataHandler;
 import ch.bzz.filmbewertung.model.Bewertung;
 import ch.bzz.filmbewertung.model.Film;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.crypto.Data;
 import java.util.List;
 
 /**
@@ -43,28 +47,24 @@ public class BewertungService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response readBewertung(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @QueryParam("uuid") String bewertungUUID
     ) {
+        int httpStatus = 200;
         Bewertung bewertung = DataHandler.getInstance().readBewertungByUUID(bewertungUUID);
-        if(bewertung != null) {
-            return Response
-                    .status(200)
-                    .entity(bewertung)
-                    .build();
-        } else {
-            return Response
-                    .status(404)
-                    .entity(bewertung)
-                    .build();
+        if(bewertung == null) {
+            httpStatus = 410;
         }
+        return Response
+                .status(httpStatus)
+                .entity(bewertung)
+                .build();
     }
 
     /**
      * create Bewertung from the passed values of form
-     * @param filmUUID UUID of Film
-     * @param sterne number of stars
-     * @param begruendung reason why this number of stars
-     * @param likes number of likes
+     * @param bewertung Bewertung welche erstellt werden soll
      *
      * @return 200 if Bewertung has successfully been created
      */
@@ -72,20 +72,64 @@ public class BewertungService {
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public Response createBewertung(
-            @FormParam("film") String filmUUID,
-            @FormParam("sterne") Byte sterne,
-            @FormParam("begruendung") String begruendung,
-            @FormParam("likes") Integer likes
+            @Valid @BeanParam Bewertung bewertung,
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @FormParam("filmUUID") String filmUUID
     ) {
-        Bewertung bewertung = new Bewertung();
-        bewertung.setBegruendung(begruendung);
-        bewertung.setLikes(likes);
-        bewertung.setSterne(sterne);
         bewertung.setFilm(filmUUID);
         DataHandler.getInstance().insertBewertung(bewertung);
         return Response
                 .status(200)
-                .entity("Successfully added Bewertung")
+                .entity("")
+                .build();
+    }
+
+    /**
+     * aktualisiert eine Bewertung falls sie existiert
+     * @param bewertung Bewertung mit aktualiserten Daten
+     * @param filmUUID filmUUID es Filmes
+     * @return gibt zurück, ob die Bewertung aktualisiert werden kann oder nicht
+     */
+    @PUT
+    @Path("update")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response updateBewertung(
+            @Valid @BeanParam Bewertung bewertung,
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @FormParam("filmUUID") String filmUUID
+    ) {
+        int httpStatus = 200;
+        Bewertung alteBewertung = DataHandler.getInstance().readBewertungByUUID(bewertung.getBewertungUUID());
+        if(alteBewertung != null) {
+            alteBewertung.setBegruendung(bewertung.getBegruendung());
+            alteBewertung.setLikes(bewertung.getLikes());
+            alteBewertung.setSterne(bewertung.getSterne());
+            alteBewertung.setFilm(filmUUID);
+
+            DataHandler.getInstance().updateBewertung();
+        } else {
+            httpStatus = 410;
+        }
+        return Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+    }
+
+    public Response deleteBewertung(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @QueryParam("uuid") String bewertungUUID
+    ) {
+        int httpStatus = 200;
+        if(!DataHandler.getInstance().deleteBewertung(bewertungUUID)) {
+            httpStatus = 410;
+        }
+        return Response
+                .status(httpStatus)
+                .entity("")
                 .build();
     }
 }
