@@ -1,8 +1,7 @@
 package ch.bzz.filmbewertung.model;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import javax.ws.rs.FormParam;
 import java.util.List;
 
@@ -23,8 +22,8 @@ public class Genre {
     private String genre;
 
     @FormParam("features")
-    @NotNull
-    private List<String> features;
+    @Size.List(@Size(min = 1))
+    private List<@NotEmpty String> features;
 
     /**
      * Standard constructor

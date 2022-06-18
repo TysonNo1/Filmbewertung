@@ -62,6 +62,9 @@ public class Evaluation {
      */
     public void setFilm(String filmUUID) {
         Film film = DataHandler.getInstance().readFilmByUUID(filmUUID);
+        if(film == null) {
+            throw new NullPointerException("Not existing film");
+        }
         setFilm(film);
     }
 

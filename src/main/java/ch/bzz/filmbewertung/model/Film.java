@@ -81,20 +81,27 @@ public class Film {
      */
     @JsonProperty("genre")
     public void setGenreByUUID(String genreUUID) {
-        setGenre(new Genre());
-        setGenre(DataHandler.getInstance().readGenreByUUID(genreUUID));
+        Genre genre = DataHandler.getInstance().readGenreByUUID(genreUUID);
+        if(genre == null) {
+            throw new NullPointerException("Not existing Genre");
+        }
+        setGenre(genre);
     }
 
     /**
      * adds to evaluations by evaluationUUID
      *
-     * @param evaluationsUUIDS array of evalutionsUUID
+     * @param evaluationsUUIDS array of evaluationsUUID
      */
     @JsonProperty("evaluations")
     public void setEvaluationsByUUID(List<String> evaluationsUUIDS) {
         setEvaluations(new ArrayList<>());
         for (String s : evaluationsUUIDS) {
-            this.evaluations.add(DataHandler.getInstance().readEvaluationByUUID(s));
+            Evaluation evaluation = DataHandler.getInstance().readEvaluationByUUID(s);
+            if(evaluation == null) {
+                throw new NullPointerException("Not existing Evaluation");
+            }
+            this.evaluations.add(evaluation);
         }
     }
 

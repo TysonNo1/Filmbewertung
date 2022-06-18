@@ -4,10 +4,7 @@ import ch.bzz.filmbewertung.data.DataHandler;
 import ch.bzz.filmbewertung.model.Film;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -74,9 +71,17 @@ public class FilmService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertFilm(
             @Valid @BeanParam Film film,
-            @NotNull @FormParam("evaluations") List<String> evaluationUUIDS,
-            @NotNull @FormParam("genre") String genreUUID,
-            @NotNull @FormParam("releaseDate") String releaseDate
+            @FormParam("evaluations")
+            List<@NotEmpty @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}") String>
+                    evaluationUUIDS,
+
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @FormParam("genre") String genreUUID,
+
+            @NotEmpty
+            @ch.bzz.filmbewertung.constraint.LocalDate
+            @FormParam("releaseDate") String releaseDate
     ) {
         film.setGenreByUUID(genreUUID);
         film.setEvaluationsByUUID(evaluationUUIDS);
