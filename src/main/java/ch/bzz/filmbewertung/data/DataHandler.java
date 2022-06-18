@@ -190,11 +190,11 @@ public class DataHandler {
         FileOutputStream fileOutputStream = null;
         Writer fileWriter;
 
-        String bookPath = Config.getProperty("bewertungJSON");
+        String bookPath = Config.getProperty("evaluationJSON");
         try {
             fileOutputStream = new FileOutputStream(bookPath);
             fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
-            objectWriter.writeValue(fileWriter, getFilmList());
+            objectWriter.writeValue(fileWriter, getEvaluationList());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -304,7 +304,7 @@ public class DataHandler {
         try {
             fileOutputStream = new FileOutputStream(bookPath);
             fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
-            objectWriter.writeValue(fileWriter, getFilmList());
+            objectWriter.writeValue(fileWriter, getGenreList());
         } catch (IOException ex) {
             ex.printStackTrace();
         }

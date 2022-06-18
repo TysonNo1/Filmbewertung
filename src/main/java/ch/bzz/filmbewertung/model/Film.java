@@ -25,7 +25,6 @@ public class Film {
     @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String filmUUID;
 
-    @NotNull
     private List<Evaluation> evaluations;
 
     @FormParam("title")
@@ -33,8 +32,6 @@ public class Film {
     @Size(min = 5, max = 40)
     private String title;
 
-    @NotNull
-    @Past
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate releaseDate;
@@ -49,7 +46,6 @@ public class Film {
     @Pattern(regexp = "ISAN\\s([0-9A-F]{4}-){4}[0-9A-Z]-([0-9A-F]{4}-){2}[0-9A-Z]")
     private String isan;
 
-    @NotNull
     private Genre genre;
 
     /**
