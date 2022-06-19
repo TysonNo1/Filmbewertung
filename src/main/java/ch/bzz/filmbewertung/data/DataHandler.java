@@ -33,7 +33,7 @@ public class DataHandler {
      */
     private DataHandler() {
         setEvaluationList(new ArrayList<>());
-        readBewertungJSON();
+        readEvaluationJSON();
         setFilmList(new ArrayList<>());
         readFilmJSON();
         setGenreList(new ArrayList<>());
@@ -54,7 +54,7 @@ public class DataHandler {
      * reads all films
      * @return list of films
      */
-    public List<Film> readALlFilms() {
+    public List<Film> readAllFilms() {
         return getFilmList();
     }
 
@@ -79,7 +79,7 @@ public class DataHandler {
      * @param film Film Object that wants to be inserted
      */
     public void insertFilm(Film film) {
-        readALlFilms().add(film);
+        readAllFilms().add(film);
         writeFilmJSON();
     }
 
@@ -159,7 +159,7 @@ public class DataHandler {
     }
 
     /**
-     * updates the bewertung list by re-writing into the list
+     * updates the evaluation list by re-writing into the list
      */
     public void updateEvaluation() {
         writeEvaluationJSON();
@@ -190,11 +190,11 @@ public class DataHandler {
         FileOutputStream fileOutputStream = null;
         Writer fileWriter;
 
-        String bookPath = Config.getProperty("bewertungJSON");
+        String bookPath = Config.getProperty("evaluationJSON");
         try {
             fileOutputStream = new FileOutputStream(bookPath);
             fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
-            objectWriter.writeValue(fileWriter, getFilmList());
+            objectWriter.writeValue(fileWriter, getEvaluationList());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -242,11 +242,11 @@ public class DataHandler {
     }
 
     /**
-     * reads the bewertungen from the JSON-file
+     * reads the evaluations from the JSON-file
      */
-    private void readBewertungJSON() {
+    private void readEvaluationJSON() {
         try {
-            String path = Config.getProperty("bewertungJSON");
+            String path = Config.getProperty("evaluationJSON");
             byte[] jsonData = Files.readAllBytes(Paths.get(path));
             ObjectMapper objectMapper = new ObjectMapper();
             Evaluation[] bewertungen = objectMapper.readValue(jsonData, Evaluation[].class);
@@ -269,7 +269,7 @@ public class DataHandler {
     }
 
     /**
-     * updades the genre list by re-writing into the list
+     * updates the genre list by re-writing into the list
      */
     public void updateGenre() {
         writeGenreJSON();
@@ -304,7 +304,7 @@ public class DataHandler {
         try {
             fileOutputStream = new FileOutputStream(bookPath);
             fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
-            objectWriter.writeValue(fileWriter, getFilmList());
+            objectWriter.writeValue(fileWriter, getGenreList());
         } catch (IOException ex) {
             ex.printStackTrace();
         }

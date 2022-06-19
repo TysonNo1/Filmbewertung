@@ -1,18 +1,18 @@
 {
-	"id": "059a7d65-a82a-4833-ad94-ba64ffd19785",
+	"id": "25e8d9b8-e8c9-44bc-9289-e456fe6b16ed",
 	"name": "Filmbewertung",
-	"timestamp": "2022-05-23T20:15:51.718Z",
+	"timestamp": "2022-06-19T09:24:33.958Z",
 	"collection_id": "f597fa02-d084-4ee7-8e6b-db931361b54b",
 	"folder_id": 0,
 	"environment_id": "0",
-	"totalPass": 20,
+	"totalPass": 144,
 	"totalFail": 0,
 	"results": [
 		{
 			"id": "d1da8eb2-ad07-4993-a40b-4f9958ed9839",
 			"name": "0.1 TestService",
 			"url": "http://localhost:8080/Filmbewertung-1.0/resource/test/test",
-			"time": 11,
+			"time": 13,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -32,7 +32,7 @@
 				}
 			},
 			"times": [
-				11
+				13
 			],
 			"allTests": [
 				{
@@ -45,7 +45,7 @@
 			"id": "7385177a-35eb-42e1-9a8b-61215bd90c36",
 			"name": "1.0 List all Filme",
 			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/list",
-			"time": 8,
+			"time": 20,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -65,7 +65,7 @@
 				}
 			},
 			"times": [
-				8
+				20
 			],
 			"allTests": [
 				{
@@ -78,7 +78,7 @@
 			"id": "0fce7e11-66ae-4ef0-891c-6248068ed4b8",
 			"name": "1.1 Read Film by uuid",
 			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/read?uuid=57628555-4884-4bf5-9338-f477415ef5c8",
-			"time": 9,
+			"time": 18,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -98,7 +98,7 @@
 				}
 			},
 			"times": [
-				9
+				18
 			],
 			"allTests": [
 				{
@@ -111,10 +111,10 @@
 			"id": "8721be4a-cb08-43b8-97aa-c2f4ed5f7ed5",
 			"name": "1.2 Read film by uuid not found",
 			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/read?uuid=1164a694-9e4a-40b8-a050-518f92f9267d",
-			"time": 8,
+			"time": 12,
 			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
+				"code": 410,
+				"name": "Gone"
 			},
 			"tests": {
 				"Status test": true,
@@ -131,7 +131,7 @@
 				}
 			},
 			"times": [
-				8
+				12
 			],
 			"allTests": [
 				{
@@ -141,24 +141,123 @@
 			]
 		},
 		{
-			"id": "45bdb34d-4540-426d-ae43-fffd5f143d3c",
-			"name": "2.0 List all Bewertungen",
-			"url": "http://localhost:8080/Filmbewertung-1.0/resource/bewertung/list",
-			"time": 17,
+			"id": "a6647abc-7086-43a3-965a-0bc5ae01520f",
+			"name": "1.3 Create valid Film",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 49,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
 			},
 			"tests": {
 				"Status test": true,
-				"Content-Type header is application/json": true
+				"Content-Type header is text/plain": true
 			},
 			"testPassFailCounts": {
 				"Status test": {
 					"pass": 1,
 					"fail": 0
 				},
-				"Content-Type header is application/json": {
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				49
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "e42e23f6-a648-4858-80bb-23ddc9ddd034",
+			"name": "1.4 Update existing Film",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 44,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				44
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "05c0ae4d-02ba-41d3-aa85-00ea61428c56",
+			"name": "1.5 Delete existing Film",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/delete?uuid=da57e963-136b-423e-ac5c-35e6c1b28c85",
+			"time": 37,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "b82ee11e-34fe-4f83-ae6e-edc556fe73e9",
+			"name": "1.6 Create Film with invalid uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 17,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
 					"pass": 1,
 					"fail": 0
 				}
@@ -169,51 +268,744 @@
 			"allTests": [
 				{
 					"Status test": true,
-					"Content-Type header is application/json": true
+					"Content-Type header is text/html": true
 				}
 			]
 		},
 		{
-			"id": "dff03617-e9c8-4914-8e0e-190edc3034ce",
-			"name": "2.1 Read Bewertung by uuid",
-			"url": "http://localhost:8080/Filmbewertung-1.0/resource/bewertung/read?uuid=ce143778-4cdd-4a83-ab2e-a4aa557ff507",
-			"time": 13,
+			"id": "deafda1d-47a9-4439-bbf7-069b185bbdc9",
+			"name": "1.7 Create Film with title too short",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 25,
 			"responseCode": {
-				"code": 200,
-				"name": "OK"
+				"code": 400,
+				"name": "Bad Request"
 			},
 			"tests": {
 				"Status test": true,
-				"Content-Type header is application/json": true
+				"Content-Type header is text/html": true
 			},
 			"testPassFailCounts": {
 				"Status test": {
 					"pass": 1,
 					"fail": 0
 				},
-				"Content-Type header is application/json": {
+				"Content-Type header is text/html": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				13
+				25
 			],
 			"allTests": [
 				{
 					"Status test": true,
-					"Content-Type header is application/json": true
+					"Content-Type header is text/html": true
 				}
 			]
 		},
 		{
-			"id": "fab378b1-6f7a-4864-82c8-42d805fb2aa9",
-			"name": "2.2 Read Bewertung by uuid not foud",
-			"url": "http://localhost:8080/Filmbewertung-1.0/resource/bewertung/read?uuid=037fed55-9429-41f5-9894-f91b07a52fbc",
+			"id": "95769c3e-a091-4cbd-a79d-58b3b4fb1d9c",
+			"name": "1.8 Create Film with title too long",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 30,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "c022b3d6-0b4c-4e0a-94b7-5426d6c6bbf7",
+			"name": "1.9 Create Film with too small length In minute",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 20,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "9b96f284-4705-469d-9dbb-28f1503964e3",
+			"name": "1.10 Create Film with too big length In minute",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 443,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				443
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "4ebecfab-1018-4d94-848f-21f7348ed483",
+			"name": "1.11 Create Film with empty isan",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 24,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				24
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "7696ab41-f0c9-4768-bf79-d30dbe399639",
+			"name": "1.12 Create Film with invalid isan",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 25,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				25
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "c816e86a-630d-44d4-9c6d-2061a3a3d436",
+			"name": "1.13 Create Film with empty evaluations",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 38,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				38
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "b91c4031-64b2-45e4-b15c-6f44b0f7e482",
+			"name": "1.14 Create Film with invalid evaluations",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 21,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				21
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "98666a79-9397-4c96-8bff-298cecc68c6f",
+			"name": "1.15 Create Film with invalid genreUUID",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 20,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "a79b0216-a1a5-49e3-aa25-5bfb569e599f",
+			"name": "1.16 Create Film with invalid localdate",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/create",
+			"time": 27,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				27
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "b287e43a-ded3-4011-88cc-acadfc7ba0ce",
+			"name": "1.17 Update not existing Film",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 48,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				48
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "afd83635-2dad-4cd3-92f3-52a08862b99c",
+			"name": "1.18 Update Film with invalid uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 35,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "c07a7b89-6d3a-433e-b51c-ae18cb8bc009",
+			"name": "1.19 Update Film with title too short",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 22,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "7077c455-882f-477c-be43-93178db7eeec",
+			"name": "1.20 Update Film with title too long",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 17,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "f0981f39-f6aa-43f5-8ba2-4fbf8208d0ed",
+			"name": "1.21 Update film with too small length in minute",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 27,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				27
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "26f2e69d-c1e0-4ecb-9f69-796541ed6e29",
+			"name": "1.22 Update film with too big length in minute",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 22,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "96c8329e-13eb-4e2a-8a2a-e05cb64433f2",
+			"name": "1.23 Update film empty isan",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 28,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "b90b7e06-9a59-44e2-bff2-590eacf51df1",
+			"name": "1.24 Update film with invalid isan",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 52,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				52
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "2108f463-cfbe-4494-afac-5bff5f057848",
+			"name": "1.25 Update film empty evaluations",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 31,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "60e79b94-01e3-4199-a587-115b072a9aa4",
+			"name": "1.26 Update film with invalid evaluations",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 26,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "2374083e-8b4e-4cdf-ae74-290da4d7ce6c",
+			"name": "1.27 Update Film with invalid genreUUID",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 23,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "cb1bc0d9-4b62-4276-8326-bf39b98f8f5b",
+			"name": "1.28 Update Film with invalid localdate",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/update",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "f399dd9c-4387-402a-b1f6-21b92f376a37",
+			"name": "1.29 Delete not existing Film invalid uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/delete?uuid=ebc3efe6-869e-45b7-baa8-0fc5f632cc65asdf",
 			"time": 9,
 			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
+				"code": 400,
+				"name": "Bad Request"
 			},
 			"tests": {
 				"Status test": true,
@@ -240,10 +1032,43 @@
 			]
 		},
 		{
-			"id": "b0c3861a-a8db-4a1a-bd8a-681c9f460689",
-			"name": "3.0 List all Genres",
-			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/list",
-			"time": 11,
+			"id": "060e861c-ec0e-4b06-a114-14639b7c0fbb",
+			"name": "1.30 Delete not existing Film",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/film/delete?uuid=ebc3efe6-869e-45b7-baa8-0fc5f632cc64",
+			"time": 22,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "45bdb34d-4540-426d-ae43-fffd5f143d3c",
+			"name": "2.0 List all Bewertungen",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/list",
+			"time": 12,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -263,7 +1088,766 @@
 				}
 			},
 			"times": [
-				11
+				12
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "dff03617-e9c8-4914-8e0e-190edc3034ce",
+			"name": "2.1 Read Bewertung by uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/read?uuid=ce143778-4cdd-4a83-ab2e-a4aa557ff507",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "fab378b1-6f7a-4864-82c8-42d805fb2aa9",
+			"name": "2.2 Read Bewertung by uuid not foud",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/read?uuid=037fed55-9429-41f5-9894-f91b07a52fbc",
+			"time": 6,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "7bd1d227-9d62-4767-81ad-f2b85b2d0061",
+			"name": "2.3 Create valid evaluation",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 27,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				27
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "732d6c7a-e0a8-47b8-85ae-8805a95e9d61",
+			"name": "2.4 Update existing evaluation",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "c6a40803-98f2-455b-8460-06986af7d893",
+			"name": "2.5 Delete existing evaluation",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/delete?uuid=1766168e-6c0e-4ed3-9ae5-89ef383e903a",
+			"time": 21,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				21
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "f1b139ff-4237-4326-a551-55cd53675149",
+			"name": "2.6 Create evaluation with invalid uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 22,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "c8ed4d2e-7947-485f-b542-66474462b46b",
+			"name": "2.7 Create evaluation with too few stars",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 20,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "20af4e5b-a8e9-4ec2-b43a-6facf70dae43",
+			"name": "2.8 Create evaluation with too many stars",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 16,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "a85fb6c4-8fc8-47c6-a965-56d08ef947d4",
+			"name": "2.9 Create evaluation with empty reason",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 26,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "26f27adc-6cca-4f24-af43-ea01021e9518",
+			"name": "2.10 Create evaluation with too long reason",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 26,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "60fddb28-f947-4565-b604-e97f1fd022b2",
+			"name": "2.11 Create evaluation with negative likes",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 46,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				46
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "17d57308-e969-488a-b2e2-b43147c3a3f8",
+			"name": "2.12 Create evaluation not existing film",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 19,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "85518027-0bbe-4146-acb4-468dfad1d384",
+			"name": "2.13 Create evaluation with invalid film UUID",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/create",
+			"time": 19,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "efebf423-7ff8-4452-af9d-90cc2b874fe0",
+			"name": "2.14 Update not existing evaluation",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 28,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "ff06c034-af0d-49d3-b754-0d93a041d604",
+			"name": "2.15 Update evaluation with invalid uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 17,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "e4f16a22-016a-40e0-b36f-b3d931f872e0",
+			"name": "2.16 Update existing evaluation with too few stars",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 23,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "ba7dfe68-e81c-48bb-988a-10418ba3ad84",
+			"name": "2.17 Update existing evaluation with too many stars",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 19,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "df9c6c95-7374-4056-a0d9-c9a78f5652cb",
+			"name": "2.18 Update existing evaluation with empty reason",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 42,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				42
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "3c384708-37ad-4224-8d8e-feb967dfec40",
+			"name": "2.19 Update existing evaluation with too long reason",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 37,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "0671c9bb-302f-42dd-9b1f-c1679b57f091",
+			"name": "2.20 Update existing evaluation with negative likes",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "0ccbd223-aff8-4af6-86b7-6b9def378bc0",
+			"name": "2.21 Update existing evaluation with not existing film",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 18,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				18
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "a0f80a9c-b6d5-4b5e-8e53-396c48119f1c",
+			"name": "2.22 Update existing evaluation with invalid film uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/evaluation/update",
+			"time": 43,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "b0c3861a-a8db-4a1a-bd8a-681c9f460689",
+			"name": "3.0 List all Genres",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/list",
+			"time": 19,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
 			],
 			"allTests": [
 				{
@@ -309,10 +1893,10 @@
 			"id": "f82db606-f27e-4c15-a212-ea6b4ceefd82",
 			"name": "3.2 Read Genre by uuid not found",
 			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/read?uuid=863766cc-3b20-4ba7-9f52-33ba4d252dcc",
-			"time": 8,
+			"time": 6,
 			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
+				"code": 410,
+				"name": "Gone"
 			},
 			"tests": {
 				"Status test": true,
@@ -329,7 +1913,469 @@
 				}
 			},
 			"times": [
-				8
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "758f7a4f-cbdb-4173-a4ae-a6a4dc7148e9",
+			"name": "3.3 Create valid genre",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/create",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "b2ad44f1-785d-436d-bfee-49bd3b53d913",
+			"name": "3.4 Update existing genre",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/update",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "016c4576-ed38-4246-becb-f41194fe0b9e",
+			"name": "3.5 Delete existing genre",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/delete?uuid=a16c3aee-e3fc-45b6-b7ee-6e607728d862",
+			"time": 26,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "d6cbf357-f283-4512-a456-6f44e72aebd8",
+			"name": "3.6 Create genre with invalid uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/create",
+			"time": 10,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "884bcf0a-f7e6-4173-9d0e-7445d594fd5b",
+			"name": "3.7 Create genre with empty genre name",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/create",
+			"time": 21,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				21
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "65e06c06-4d29-44b4-a1a9-dda2c54c597d",
+			"name": "3.8 Create genre with no features",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/create",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "976f2114-276c-4f8a-9f51-b69fa5b539ae",
+			"name": "3.9 Create genre with empty features",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/create",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "43b1a0a8-4ee9-4d6e-b820-2d29573890f0",
+			"name": "3.10 Update not existing genre",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/update",
+			"time": 75,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				75
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "5fbc4c62-d4da-4c64-84d0-9e3be72e3163",
+			"name": "3.11 Update genre with invalid uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/update",
+			"time": 15,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "2e648df6-7cc9-4ef2-84f1-6d4c16ca04e7",
+			"name": "3.12 Update existing genre with empty genre name",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/update",
+			"time": 13,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "e73abe32-2da8-4d80-ae48-045d14d893b1",
+			"name": "3.13 Update existing genre with no features",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/update",
+			"time": 30,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "9f7e492d-19d0-4ba9-b7dc-5c64490a8b4b",
+			"name": "3.14 Update existing genre with empty features",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/update",
+			"time": 55,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				55
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/html": true
+				}
+			]
+		},
+		{
+			"id": "7c66c0c8-a8c5-41ef-be40-03a742b6d654",
+			"name": "3.15 Delete not existing genre",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/delete?uuid=a16c3aee-e3fc-45b6-b7ee-6e607728d890",
+			"time": 26,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/plain": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/plain": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Content-Type header is text/plain": true
+				}
+			]
+		},
+		{
+			"id": "baaef191-c459-4c63-ab9a-a91c07caa293",
+			"name": "3.16 Delete not existing genre with invalid uuid",
+			"url": "http://localhost:8080/Filmbewertung-1.0/resource/genre/delete?uuid=123",
+			"time": 16,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true,
+				"Content-Type header is text/html": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is text/html": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
 			],
 			"allTests": [
 				{
@@ -340,7 +2386,7 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 104,
+	"totalTime": 2162,
 	"collection": {
 		"requests": [
 			{
@@ -360,6 +2406,118 @@
 				"method": "GET"
 			},
 			{
+				"id": "a6647abc-7086-43a3-965a-0bc5ae01520f",
+				"method": "POST"
+			},
+			{
+				"id": "e42e23f6-a648-4858-80bb-23ddc9ddd034",
+				"method": "PUT"
+			},
+			{
+				"id": "05c0ae4d-02ba-41d3-aa85-00ea61428c56",
+				"method": "DELETE"
+			},
+			{
+				"id": "b82ee11e-34fe-4f83-ae6e-edc556fe73e9",
+				"method": "POST"
+			},
+			{
+				"id": "deafda1d-47a9-4439-bbf7-069b185bbdc9",
+				"method": "POST"
+			},
+			{
+				"id": "95769c3e-a091-4cbd-a79d-58b3b4fb1d9c",
+				"method": "POST"
+			},
+			{
+				"id": "c022b3d6-0b4c-4e0a-94b7-5426d6c6bbf7",
+				"method": "POST"
+			},
+			{
+				"id": "9b96f284-4705-469d-9dbb-28f1503964e3",
+				"method": "POST"
+			},
+			{
+				"id": "4ebecfab-1018-4d94-848f-21f7348ed483",
+				"method": "POST"
+			},
+			{
+				"id": "7696ab41-f0c9-4768-bf79-d30dbe399639",
+				"method": "POST"
+			},
+			{
+				"id": "c816e86a-630d-44d4-9c6d-2061a3a3d436",
+				"method": "POST"
+			},
+			{
+				"id": "b91c4031-64b2-45e4-b15c-6f44b0f7e482",
+				"method": "POST"
+			},
+			{
+				"id": "98666a79-9397-4c96-8bff-298cecc68c6f",
+				"method": "POST"
+			},
+			{
+				"id": "a79b0216-a1a5-49e3-aa25-5bfb569e599f",
+				"method": "POST"
+			},
+			{
+				"id": "b287e43a-ded3-4011-88cc-acadfc7ba0ce",
+				"method": "PUT"
+			},
+			{
+				"id": "afd83635-2dad-4cd3-92f3-52a08862b99c",
+				"method": "PUT"
+			},
+			{
+				"id": "c07a7b89-6d3a-433e-b51c-ae18cb8bc009",
+				"method": "PUT"
+			},
+			{
+				"id": "7077c455-882f-477c-be43-93178db7eeec",
+				"method": "PUT"
+			},
+			{
+				"id": "f0981f39-f6aa-43f5-8ba2-4fbf8208d0ed",
+				"method": "PUT"
+			},
+			{
+				"id": "26f2e69d-c1e0-4ecb-9f69-796541ed6e29",
+				"method": "PUT"
+			},
+			{
+				"id": "96c8329e-13eb-4e2a-8a2a-e05cb64433f2",
+				"method": "PUT"
+			},
+			{
+				"id": "b90b7e06-9a59-44e2-bff2-590eacf51df1",
+				"method": "PUT"
+			},
+			{
+				"id": "2108f463-cfbe-4494-afac-5bff5f057848",
+				"method": "PUT"
+			},
+			{
+				"id": "60e79b94-01e3-4199-a587-115b072a9aa4",
+				"method": "PUT"
+			},
+			{
+				"id": "2374083e-8b4e-4cdf-ae74-290da4d7ce6c",
+				"method": "PUT"
+			},
+			{
+				"id": "cb1bc0d9-4b62-4276-8326-bf39b98f8f5b",
+				"method": "PUT"
+			},
+			{
+				"id": "f399dd9c-4387-402a-b1f6-21b92f376a37",
+				"method": "DELETE"
+			},
+			{
+				"id": "060e861c-ec0e-4b06-a114-14639b7c0fbb",
+				"method": "DELETE"
+			},
+			{
 				"id": "45bdb34d-4540-426d-ae43-fffd5f143d3c",
 				"method": "GET"
 			},
@@ -372,6 +2530,86 @@
 				"method": "GET"
 			},
 			{
+				"id": "7bd1d227-9d62-4767-81ad-f2b85b2d0061",
+				"method": "POST"
+			},
+			{
+				"id": "732d6c7a-e0a8-47b8-85ae-8805a95e9d61",
+				"method": "PUT"
+			},
+			{
+				"id": "c6a40803-98f2-455b-8460-06986af7d893",
+				"method": "DELETE"
+			},
+			{
+				"id": "f1b139ff-4237-4326-a551-55cd53675149",
+				"method": "POST"
+			},
+			{
+				"id": "c8ed4d2e-7947-485f-b542-66474462b46b",
+				"method": "POST"
+			},
+			{
+				"id": "20af4e5b-a8e9-4ec2-b43a-6facf70dae43",
+				"method": "POST"
+			},
+			{
+				"id": "a85fb6c4-8fc8-47c6-a965-56d08ef947d4",
+				"method": "POST"
+			},
+			{
+				"id": "26f27adc-6cca-4f24-af43-ea01021e9518",
+				"method": "POST"
+			},
+			{
+				"id": "60fddb28-f947-4565-b604-e97f1fd022b2",
+				"method": "POST"
+			},
+			{
+				"id": "17d57308-e969-488a-b2e2-b43147c3a3f8",
+				"method": "POST"
+			},
+			{
+				"id": "85518027-0bbe-4146-acb4-468dfad1d384",
+				"method": "POST"
+			},
+			{
+				"id": "efebf423-7ff8-4452-af9d-90cc2b874fe0",
+				"method": "PUT"
+			},
+			{
+				"id": "ff06c034-af0d-49d3-b754-0d93a041d604",
+				"method": "PUT"
+			},
+			{
+				"id": "e4f16a22-016a-40e0-b36f-b3d931f872e0",
+				"method": "PUT"
+			},
+			{
+				"id": "ba7dfe68-e81c-48bb-988a-10418ba3ad84",
+				"method": "PUT"
+			},
+			{
+				"id": "df9c6c95-7374-4056-a0d9-c9a78f5652cb",
+				"method": "PUT"
+			},
+			{
+				"id": "3c384708-37ad-4224-8d8e-feb967dfec40",
+				"method": "PUT"
+			},
+			{
+				"id": "0671c9bb-302f-42dd-9b1f-c1679b57f091",
+				"method": "PUT"
+			},
+			{
+				"id": "0ccbd223-aff8-4af6-86b7-6b9def378bc0",
+				"method": "PUT"
+			},
+			{
+				"id": "a0f80a9c-b6d5-4b5e-8e53-396c48119f1c",
+				"method": "PUT"
+			},
+			{
 				"id": "b0c3861a-a8db-4a1a-bd8a-681c9f460689",
 				"method": "GET"
 			},
@@ -382,6 +2620,62 @@
 			{
 				"id": "f82db606-f27e-4c15-a212-ea6b4ceefd82",
 				"method": "GET"
+			},
+			{
+				"id": "758f7a4f-cbdb-4173-a4ae-a6a4dc7148e9",
+				"method": "POST"
+			},
+			{
+				"id": "b2ad44f1-785d-436d-bfee-49bd3b53d913",
+				"method": "PUT"
+			},
+			{
+				"id": "016c4576-ed38-4246-becb-f41194fe0b9e",
+				"method": "DELETE"
+			},
+			{
+				"id": "d6cbf357-f283-4512-a456-6f44e72aebd8",
+				"method": "POST"
+			},
+			{
+				"id": "884bcf0a-f7e6-4173-9d0e-7445d594fd5b",
+				"method": "POST"
+			},
+			{
+				"id": "65e06c06-4d29-44b4-a1a9-dda2c54c597d",
+				"method": "POST"
+			},
+			{
+				"id": "976f2114-276c-4f8a-9f51-b69fa5b539ae",
+				"method": "POST"
+			},
+			{
+				"id": "43b1a0a8-4ee9-4d6e-b820-2d29573890f0",
+				"method": "PUT"
+			},
+			{
+				"id": "5fbc4c62-d4da-4c64-84d0-9e3be72e3163",
+				"method": "PUT"
+			},
+			{
+				"id": "2e648df6-7cc9-4ef2-84f1-6d4c16ca04e7",
+				"method": "PUT"
+			},
+			{
+				"id": "e73abe32-2da8-4d80-ae48-045d14d893b1",
+				"method": "PUT"
+			},
+			{
+				"id": "9f7e492d-19d0-4ba9-b7dc-5c64490a8b4b",
+				"method": "PUT"
+			},
+			{
+				"id": "7c66c0c8-a8c5-41ef-be40-03a742b6d654",
+				"method": "DELETE"
+			},
+			{
+				"id": "baaef191-c459-4c63-ab9a-a91c07caa293",
+				"method": "DELETE"
 			}
 		]
 	}

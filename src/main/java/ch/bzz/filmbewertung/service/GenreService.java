@@ -92,10 +92,10 @@ public class GenreService {
             @Valid @BeanParam Genre genre
     ) {
         int httpStatus = 200;
-        Genre altesGenre = DataHandler.getInstance().readGenreByUUID(genre.getGenreUUID());
-        if(altesGenre != null) {
-            altesGenre.setGenre(genre.getGenre());
-            altesGenre.setFeatures(genre.getFeatures());
+        Genre oldGenre = DataHandler.getInstance().readGenreByUUID(genre.getGenreUUID());
+        if(oldGenre != null) {
+            oldGenre.setGenre(genre.getGenre());
+            oldGenre.setFeatures(genre.getFeatures());
 
             DataHandler.getInstance().updateGenre();
         } else {

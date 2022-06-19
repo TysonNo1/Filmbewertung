@@ -1,8 +1,6 @@
 package ch.bzz.filmbewertung.model;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import javax.ws.rs.FormParam;
 import java.util.List;
 
@@ -14,16 +12,17 @@ import java.util.List;
 public class Genre {
 
     @FormParam("genreUUID")
+    @NotEmpty
     @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String genreUUID;
 
-    @FormParam("param")
+    @FormParam("genre")
     @NotEmpty
     private String genre;
 
     @FormParam("features")
-    @NotNull
-    private List<String> features;
+    @Size.List(@Size(min = 1))
+    private List<@NotEmpty String> features;
 
     /**
      * Standard constructor
