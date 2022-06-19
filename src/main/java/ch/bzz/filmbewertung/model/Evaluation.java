@@ -42,8 +42,8 @@ public class Evaluation {
     }
 
     /**
-     * Bewertung constructor with data
-     * @param film film of evalution
+     * Evaluation constructor with data
+     * @param film film of evaluation
      * @param stars number of starts
      * @param reason reason why it has so many stars
      * @param likes number of likes

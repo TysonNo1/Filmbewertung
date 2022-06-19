@@ -64,6 +64,9 @@ public class FilmService {
      * create Film from passed values
      *
      * @param film Film that wants to be inserted
+     * @param evaluationUUIDS Evaluations from the film
+     * @param genreUUID genre of the film
+     * @param releaseDate release date of the film but as string
      * @return if Film has successfully been inserted
      */
     @Path("create")
@@ -96,6 +99,8 @@ public class FilmService {
     /**
      * updates a film
      * @param film Film that wants to be updated if it exists
+     * @param evaluationUUIDS evaluations that want to be updated
+     * @param genreUUID genre that wants to be updated
      * @return returns if the film could be updated or not
      */
     @PUT

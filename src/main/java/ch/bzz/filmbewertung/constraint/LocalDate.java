@@ -5,7 +5,7 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**
- * LocalDate Constraint set on String fields that can be LocalDate
+ * LocalDate Constraint set on Strings that can be LocalDate
  * @author Erion Malaj
  */
 @Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE})

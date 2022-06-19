@@ -27,7 +27,7 @@ public class EvaluationService {
     @Path("list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listBewertungen() {
+    public Response listEvaluations() {
         List<Evaluation> evaluationList = DataHandler.getInstance().readAllEvaluations();
         return Response
                 .status(200)
@@ -64,6 +64,7 @@ public class EvaluationService {
      * create Evaluation from the passed values
      *
      * @param evaluation Evaluation which should be inserted
+     * @param filmUUID film for which the evaluation has been created
      * @return if Evaluation has successfully been inserted
      */
     @Path("create")

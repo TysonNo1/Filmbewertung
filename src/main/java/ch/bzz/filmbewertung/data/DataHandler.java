@@ -159,7 +159,7 @@ public class DataHandler {
     }
 
     /**
-     * updates the bewertung list by re-writing into the list
+     * updates the evaluation list by re-writing into the list
      */
     public void updateEvaluation() {
         writeEvaluationJSON();
@@ -242,7 +242,7 @@ public class DataHandler {
     }
 
     /**
-     * reads the bewertungen from the JSON-file
+     * reads the evaluations from the JSON-file
      */
     private void readEvaluationJSON() {
         try {
@@ -269,7 +269,7 @@ public class DataHandler {
     }
 
     /**
-     * updades the genre list by re-writing into the list
+     * updates the genre list by re-writing into the list
      */
     public void updateGenre() {
         writeGenreJSON();

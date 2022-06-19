@@ -1,6 +1,5 @@
 package ch.bzz.filmbewertung.model;
 
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 import javax.ws.rs.FormParam;
 import java.util.List;
