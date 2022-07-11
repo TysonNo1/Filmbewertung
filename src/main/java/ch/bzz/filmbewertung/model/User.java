@@ -1,5 +1,7 @@
 package ch.bzz.filmbewertung.model;
 
+import java.util.List;
+
 /**
  * User class to authenticate when accessing website
  *
@@ -11,6 +13,7 @@ public class User {
     private String userName;
     private String password;
     private String userRole;
+    private List<String> words;
 
     /**
      * gets userUUID
@@ -85,16 +88,20 @@ public class User {
     }
 
     /**
-     * log user on
+     * gets words
+     *
+     * @return value of words
      */
-    public void logon() {
-
+    public List<String> getWords() {
+        return words;
     }
 
     /**
-     * log user off
+     * sets words
+     *
+     * @param words the value to set
      */
-    public void logoff() {
-
+    public void setWords(List<String> words) {
+        this.words = words;
     }
 }
