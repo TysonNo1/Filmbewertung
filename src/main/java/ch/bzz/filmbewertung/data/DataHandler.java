@@ -3,6 +3,7 @@ package ch.bzz.filmbewertung.data;
 import ch.bzz.filmbewertung.model.Evaluation;
 import ch.bzz.filmbewertung.model.Film;
 import ch.bzz.filmbewertung.model.Genre;
+import ch.bzz.filmbewertung.model.User;
 import ch.bzz.filmbewertung.service.Config;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -27,6 +28,7 @@ public class DataHandler {
     private List<Film> filmList;
     private List<Evaluation> evaluationList;
     private List<Genre> genreList;
+    private List<User> userList;
 
     /**
      * private constructor defeats instantiation
@@ -38,6 +40,7 @@ public class DataHandler {
         readFilmJSON();
         setGenreList(new ArrayList<>());
         readGenreJSON();
+        setUserList(new ArrayList<>());
     }
 
     /**
@@ -328,6 +331,60 @@ public class DataHandler {
     }
 
     /**
+     * reads a user by the username/password provided
+     *
+     * @param username user name
+     * @param password user password
+     * @return user-object
+     */
+    public User readUser(String username, String password) {
+        User user = new User();
+        for (User entry : getUserList()) {
+            if (entry.getUserName().equals(username) &&
+                    entry.getPassword().equals(password)) {
+                user = entry;
+            }
+        }
+        return user;
+    }
+
+    /**
+     * Writes a User object into JSON File
+     */
+    public void writeUserJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        FileOutputStream fileOutputStream = null;
+        Writer fileWriter;
+
+        String bookPath = Config.getProperty("userJSON");
+        try {
+            fileOutputStream = new FileOutputStream(bookPath);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+            objectWriter.writeValue(fileWriter, getGenreList());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * reads the users from the JSON-file
+     */
+    private void readUserJSON() {
+        try {
+            String path = Config.getProperty("userJSON");
+            byte[] jsonData = Files.readAllBytes(Paths.get(path));
+            ObjectMapper objectMapper = new ObjectMapper();
+            User[] users = objectMapper.readValue(jsonData, User[].class);
+            for (User user : users) {
+                getUserList().add(user);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
      * gets filmlist
      *
      * @return value of filmlist
@@ -379,5 +436,23 @@ public class DataHandler {
      */
     private void setGenreList(List<Genre> genreList) {
         this.genreList = genreList;
+    }
+
+    /**
+     * sets userList
+     *
+     * @param userList the value to set
+     */
+    private void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
+    /**
+     * gets userList
+     *
+     * @return value of userList
+     */
+    public List<User> getUserList() {
+        return userList;
     }
 }
