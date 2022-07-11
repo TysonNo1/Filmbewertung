@@ -52,7 +52,6 @@ public class UserService {
         }
         token = JWToken.buildToken(user.getUserRole(), 5, claimMap);
 
-
         NewCookie roleCookie = new NewCookie(
                 "userRole",
                 user.getUserRole(),
