@@ -43,18 +43,18 @@ public class UserService {
         String token;
         Map<String, Object> claimMap = new HashMap<>();
         int randomWord = 0;
-        if (user.getUserRole().equals("guest")) {
+        if (user.getRole().equals("guest")) {
             httpStatus = 404;
         } else {
-            randomWord = (int) (Math.random() * 5);
-            claimMap.put("role", user.getUserRole());
+            randomWord = (int) (Math.random() * 4);
+            claimMap.put("role", user.getRole());
             claimMap.put("word", user.getWords().get(randomWord));
         }
-        token = JWToken.buildToken(user.getUserRole(), 5, claimMap);
+        token = JWToken.buildToken(user.getRole(), 5, claimMap);
 
         NewCookie roleCookie = new NewCookie(
                 "userRole",
-                user.getUserRole(),
+                user.getRole(),
                 "/",
                 "",
                 "Login-Cookie",

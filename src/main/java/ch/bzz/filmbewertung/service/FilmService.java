@@ -95,8 +95,6 @@ public class FilmService {
      * create Film from passed values
      *
      * @param film Film that wants to be inserted
-     * @param evaluationUUIDS Evaluations from the film
-     * @param genreUUID genre of the film
      * @param releaseDate release date of the film but as string
      * @param userRole User Role for cookie
      * @return if Film has successfully been inserted
@@ -107,13 +105,6 @@ public class FilmService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertFilm(
             @Valid @BeanParam Film film,
-            @FormParam("evaluations")
-            List<@NotEmpty @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}") String>
-                    evaluationUUIDS,
-
-            @NotEmpty
-            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
-            @FormParam("genre") String genreUUID,
 
             @NotEmpty
             @ch.bzz.filmbewertung.constraint.LocalDate
@@ -121,8 +112,6 @@ public class FilmService {
 
             @CookieParam("userRole") String userRole
     ) {
-        film.setGenreByUUID(genreUUID);
-        film.setEvaluationsByUUID(evaluationUUIDS);
         film.setReleaseDate(LocalDate.parse(releaseDate));
         DataHandler.getInstance().insertFilm(film);
 
@@ -146,8 +135,6 @@ public class FilmService {
     /**
      * updates a film
      * @param film Film that wants to be updated if it exists
-     * @param evaluationUUIDS evaluations that want to be updated
-     * @param genreUUID genre that wants to be updated
      * @param userRole User Role for Cookie
      * @return returns if the film could be updated or not
      */
@@ -157,18 +144,14 @@ public class FilmService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateFilm(
             @Valid @BeanParam Film film,
-            @NotNull @FormParam("evaluations") List<String> evaluationUUIDS,
-            @NotNull @FormParam("genre") String genreUUID,
             @CookieParam("userRole") String userRole
     ) {
         int httpStatus = 200;
         Film alterFilm = DataHandler.getInstance().readFilmByUUID(film.getFilmUUID());
         if(alterFilm != null) {
             alterFilm.setTitle(film.getTitle());
-            alterFilm.setGenreByUUID(genreUUID);
             alterFilm.setLengthInMin(film.getLengthInMin());
             alterFilm.setIsan(film.getIsan());
-            alterFilm.setEvaluationsByUUID(evaluationUUIDS);
 
             DataHandler.getInstance().updateFilm();
         } else {

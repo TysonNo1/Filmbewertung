@@ -34,13 +34,14 @@ public class DataHandler {
      * private constructor defeats instantiation
      */
     private DataHandler() {
+        setUserList(new ArrayList<>());
+        readUserJSON();
         setEvaluationList(new ArrayList<>());
         readEvaluationJSON();
-        setFilmList(new ArrayList<>());
-        readFilmJSON();
         setGenreList(new ArrayList<>());
         readGenreJSON();
-        setUserList(new ArrayList<>());
+        setFilmList(new ArrayList<>());
+        readFilmJSON();
     }
 
     /**
@@ -340,7 +341,7 @@ public class DataHandler {
     public User readUser(String username, String password) {
         User user = new User();
         for (User entry : getUserList()) {
-            if (entry.getUserName().equals(username) &&
+            if (entry.getUsername().equals(username) &&
                     entry.getPassword().equals(password)) {
                 user = entry;
             }

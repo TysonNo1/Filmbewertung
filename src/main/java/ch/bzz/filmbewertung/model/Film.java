@@ -1,6 +1,7 @@
 package ch.bzz.filmbewertung.model;
 
 import ch.bzz.filmbewertung.data.DataHandler;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -25,7 +26,8 @@ public class Film {
     @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String filmUUID;
 
-    private List<Evaluation> evaluations;
+    @FormParam("evaluations")
+    private List<@NotEmpty @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}") String> evaluations;
 
     @FormParam("title")
     @NotEmpty
@@ -46,7 +48,10 @@ public class Film {
     @Pattern(regexp = "ISAN\\s([0-9A-F]{4}-){4}[0-9A-Z]-([0-9A-F]{4}-){2}[0-9A-Z]")
     private String isan;
 
-    private Genre genre;
+    @NotEmpty
+    @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+    @FormParam("genre")
+    private String genre;
 
     /**
      * Standard constructor
@@ -64,7 +69,7 @@ public class Film {
      * @param isan ISAN number of film
      * @param genre Genre of film
      */
-    public Film(String filmUUID, List<Evaluation> evaluations, String title, LocalDate releaseDate, Integer lengthInMin, String isan, Genre genre) {
+    public Film(String filmUUID, List<String> evaluations, String title, LocalDate releaseDate, Integer lengthInMin, String isan, String genre) {
         this.filmUUID = filmUUID;
         this.evaluations = evaluations;
         this.title = title;
@@ -74,26 +79,27 @@ public class Film {
         this.genre = genre;
     }
 
+
     /**
      * sets genre
      *
      * @param genreUUID value to get the Genre
      */
-    @JsonProperty("genre")
+    /*@JsonProperty("genre")
     public void setGenreByUUID(String genreUUID) {
         Genre genre = DataHandler.getInstance().readGenreByUUID(genreUUID);
         if(genre == null) {
             throw new NullPointerException("Not existing Genre");
         }
         setGenre(genre);
-    }
+    }*/
 
     /**
      * adds to evaluations by evaluationUUID
      *
      * @param evaluationsUUIDS array of evaluationsUUID
      */
-    @JsonProperty("evaluations")
+    /*@JsonProperty("evaluationsList")
     public void setEvaluationsByUUID(List<String> evaluationsUUIDS) {
         setEvaluations(new ArrayList<>());
         for (String s : evaluationsUUIDS) {
@@ -103,7 +109,7 @@ public class Film {
             }
             this.evaluations.add(evaluation);
         }
-    }
+    }/*
 
     /**
      * gets filmUUID
@@ -128,7 +134,7 @@ public class Film {
      *
      * @return value of evaluations
      */
-    public List<Evaluation> getEvaluations() {
+    public List<String> getEvaluations() {
         return evaluations;
     }
 
@@ -137,7 +143,7 @@ public class Film {
      *
      * @param evaluations the value to set
      */
-    public void setEvaluations(List<Evaluation> evaluations) {
+    public void setEvaluations(List<String> evaluations) {
         this.evaluations = evaluations;
     }
 
@@ -218,7 +224,7 @@ public class Film {
      *
      * @return value of genre
      */
-    public Genre getGenre() {
+    public String getGenre() {
         return genre;
     }
 
@@ -227,7 +233,7 @@ public class Film {
      *
      * @param genre the value to set
      */
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 }
