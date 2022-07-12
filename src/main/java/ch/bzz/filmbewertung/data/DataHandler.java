@@ -170,6 +170,13 @@ public class DataHandler {
     }
 
     /**
+     * updates the users list by re-writing into the list
+     */
+    public void updateUser() {
+        writeUserJSON();
+    }
+
+    /**
      * delete a evaluation by its uuid
      * @param evaluationUUID evaluation to delete
      * @return if the evaluation could be deleted or not
@@ -179,6 +186,22 @@ public class DataHandler {
         if(evaluation != null) {
             getEvaluationList().remove(evaluation);
             writeEvaluationJSON();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * delete a user by its uuid
+     * @param userUUID user to delete
+     * @return if the user could be deleted or not
+     */
+    public boolean deleteUser(String userUUID) {
+        User user = readUserByUUID(userUUID);
+        if(user != null) {
+            getUserList().remove(user);
+            writeUserJSON();
             return true;
         } else {
             return false;
@@ -228,6 +251,21 @@ public class DataHandler {
     }
 
     /**
+     * reads a user by its uuid
+     * @param userUUID uuid of genre
+     * @return the User (null=not found)
+     */
+    public User readUserByUUID(String userUUID) {
+        User user = null;
+        for(User entry : getUserList()) {
+            if(entry.getUserUUID().equals(userUUID)) {
+                user = entry;
+            }
+        }
+        return user;
+    }
+
+    /**
      * reads the films from the JSON-file
      */
     private void readFilmJSON() {
@@ -270,6 +308,16 @@ public class DataHandler {
     public void insertGenre(Genre genre) {
         readALlGenres().add(genre);
         writeGenreJSON();
+    }
+
+    /**
+     * creates a User with passed data
+     *
+     * @param user Object that wants to be inserted
+     */
+    public void insertUser(User user) {
+        readAllUsers().add(user);
+        writeUserJSON();
     }
 
     /**
@@ -329,6 +377,14 @@ public class DataHandler {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * reads all Users
+     * @return list of genres
+     */
+    public List<User> readAllUsers() {
+        return getUserList();
     }
 
     /**

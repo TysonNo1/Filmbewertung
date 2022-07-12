@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * a JSON WebToken
- * @author Erion Malaj
+ * Source: Marcel Suter @BZZ
  */
 public class JWToken {
 

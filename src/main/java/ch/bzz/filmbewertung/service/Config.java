@@ -35,7 +35,7 @@ public class Config extends Application {
         providers.add(FilmService.class);
         providers.add(GenreService.class);
         providers.add(UserService.class);
-        //providers.add(AuthorizationFilter.class);
+        providers.add(AuthorizationFilter.class);
         return providers;
     }
 

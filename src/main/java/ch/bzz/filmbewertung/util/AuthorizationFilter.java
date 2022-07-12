@@ -23,7 +23,7 @@ public class AuthorizationFilter implements javax.ws.rs.container.ContainerReque
     @Context
     private ResourceInfo resourceInfo;
 
-    private static final String AUTHORIZATION_PROPERTY = "Authorization";
+    private static final String AUTHORIZATION_PROPERTY = "cookie";
 
     @Override
     public void filter(ContainerRequestContext requestContext) {
@@ -65,21 +65,22 @@ public class AuthorizationFilter implements javax.ws.rs.container.ContainerReque
      * @return token
      */
     private String getToken(MultivaluedMap<String, String> headers) {
-        String token = "";
-        final List<String> authorizations = headers.get(AUTHORIZATION_PROPERTY);
-        if (authorizations != null) {
-            for (String entry : authorizations) {
-                String[] data = entry.split(" ");
-                if (data[0].equals("Bearer")) {
-                    token = data[1];
-                }
-            }
+        String role = "";
+        String roleOutput;
 
-            final Map<String, String> claims = JWToken.readClaims(token);
-            if (claims.isEmpty()) return null;
-            return claims.get("role");
-        } else {
-            return null;
+        try {
+            role = headers.get(AUTHORIZATION_PROPERTY).get(0);
+
+            if (!role.equals("")) {
+                roleOutput = role
+                        .substring(0, role.indexOf(";"))
+                        .substring(role.indexOf("=") + 1);
+            } else {
+                roleOutput = "guest";
+            }
+        }catch (Exception e){
+            roleOutput = "guest";
         }
+        return roleOutput;
     }
 }

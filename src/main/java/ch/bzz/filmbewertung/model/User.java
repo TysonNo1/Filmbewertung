@@ -1,5 +1,9 @@
 package ch.bzz.filmbewertung.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 import java.util.List;
 
 /**
@@ -9,15 +13,32 @@ import java.util.List;
  */
 public class User {
 
+    @FormParam("userUUID")
+    @Pattern(regexp = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89ABab][0-9a-fA-F]{3}-[0-9a-fA-F]{12}")
     private String userUUID;
+
+    @FormParam("username")
+    @NotEmpty
+    @Size(min = 3,max = 30)
     private String username;
+
+    @FormParam("password")
+    @NotEmpty
+    @Size(min = 8,max = 30)
     private String password;
+
+    @FormParam("role")
+    @NotEmpty
+    @Size(min = 3,max = 30)
     private String role;
+
+    @FormParam("words")
+    @NotEmpty
     private List<String> words;
 
     public User() {
-        this.username = "guest";
-        this.role = "guest";
+        setUsername("guest");
+        setRole("guest");
     }
 
     /**
