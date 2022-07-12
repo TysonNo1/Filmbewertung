@@ -1,0 +1,16 @@
+[
+    {
+        "userUUID": "810902c7-b326-43fb-9d4a-ee9c543fd370",
+        "username": "admin1",
+        "role": "admin",
+        "password": "goodpassword",
+        "words": ["Mercedes-Benz", "BMW", "Audi", "Porsche"]
+    },
+    {
+        "userUUID": "f7c823af-dea1-4696-9aef-6b75750dfd1f",
+        "username": "user2",
+        "role": "user",
+        "password": "weakpassword",
+        "words": ["Lamborghini", "Ferrari", "Bugatti", "Bentley"]
+    }
+]

@@ -1,5 +1,7 @@
 package ch.bzz.filmbewertung.service;
 
+import ch.bzz.filmbewertung.util.AuthorizationFilter;
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.io.FileInputStream;
@@ -32,8 +34,8 @@ public class Config extends Application {
         providers.add(EvaluationService.class);
         providers.add(FilmService.class);
         providers.add(GenreService.class);
-        providers.add(AuthorService.class);
         providers.add(UserService.class);
+        providers.add(AuthorizationFilter.class);
         return providers;
     }
 

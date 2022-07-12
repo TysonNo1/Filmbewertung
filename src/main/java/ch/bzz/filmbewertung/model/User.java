@@ -1,5 +1,9 @@
 package ch.bzz.filmbewertung.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 import java.util.List;
 
 /**
@@ -9,11 +13,33 @@ import java.util.List;
  */
 public class User {
 
+    @FormParam("userUUID")
+    @Pattern(regexp = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89ABab][0-9a-fA-F]{3}-[0-9a-fA-F]{12}")
     private String userUUID;
-    private String userName;
+
+    @FormParam("username")
+    @NotEmpty
+    @Size(min = 3,max = 30)
+    private String username;
+
+    @FormParam("password")
+    @NotEmpty
+    @Size(min = 8,max = 30)
     private String password;
-    private String userRole;
+
+    @FormParam("role")
+    @NotEmpty
+    @Size(min = 3,max = 30)
+    private String role;
+
+    @FormParam("words")
+    @NotEmpty
     private List<String> words;
+
+    public User() {
+        setUsername("guest");
+        setRole("guest");
+    }
 
     /**
      * gets userUUID
@@ -38,17 +64,17 @@ public class User {
      *
      * @return value of userName
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
      * sets userName
      *
-     * @param userName the value to set
+     * @param username the value to set
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -74,17 +100,17 @@ public class User {
      *
      * @return value of userRole
      */
-    public String getUserRole() {
-        return userRole;
+    public String getRole() {
+        return role;
     }
 
     /**
      * sets userRole
      *
-     * @param userRole the value to set
+     * @param role the value to set
      */
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     /**
