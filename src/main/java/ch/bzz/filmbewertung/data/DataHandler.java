@@ -158,6 +158,7 @@ public class DataHandler {
      * @param evaluation Object that wants to be inserted
      */
     public void insertEvaluation(Evaluation evaluation) {
+
         readAllEvaluations().add(evaluation);
         writeEvaluationJSON();
     }
